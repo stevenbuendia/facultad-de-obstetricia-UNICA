@@ -101,12 +101,16 @@
       <div class="flex items-center space-x-3">
 
         <!-- Aula Virtual -->
-        <a href="https://aulavirtual.unica.edu.pe/"
+        <a 
+        href="https://aulavirtual.unica.edu.pe"
         target="_blank"
-        class="flex items-center bg-red-900 text-white px-2 py-2 sm:px-3 md:px-4 rounded-full text-[10px] sm:text-xs md:text-sm font-semibold shadow-md hover:bg-red-800 transition">
-        <i data-lucide="monitor" class="w-4 h-4 mr-2"></i>
+        class="flex items-center px-4 py-3 text-sm font-medium rounded-lg
+              text-white bg-red-900 hover:bg-red-800"
+>
+        <i data-lucide="monitor" class="w-5 h-5 mr-3"></i>
         Aula Virtual
 </a>
+
 
 
         <!-- Botón Hamburguesa -->
@@ -124,8 +128,11 @@
 
     <div class="flex min-h-screen">
         <!-- Sidebar / Menú Lateral -->
-        <aside id="sidebar" class="fixed inset-y-0 left-0 bg-white border-r border-pink-100 w-64 z-40 sidebar-transition -translate-x-full lg:translate-x-0 lg:static">
-            <nav class="mt-4 px-2 space-y-1 overflow-y-auto h-[calc(100vh-80px)]">
+        <aside
+  id="sidebar"
+  class="fixed top-20 bottom-0 left-0 bg-white border-r border-pink-100 w-64 z-40
+         sidebar-transition -translate-x-full lg:translate-x-0 lg:static">
+          <nav class="mt-4 px-2 space-y-1 overflow-y-auto h-full">
                 <a href="#" onclick="navigate('inicio')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
                     <i data-lucide="home" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Inicio
                 </a>
@@ -203,7 +210,7 @@
         const views = {
             inicio: `
                 <div class="space-y-8">
-                    <div class="relative rounded-3xl overflow-hidden h-[450px] shadow-2xl border-4 border-white">
+                <div class="relative rounded-3xl overflow-hidden h-[450px] shadow-2xl border-4 border-white">
                         <img src="imagenes/banner.jpg" class="w-full h-full object-cover" alt="Banner Facultad">
                         <div class="absolute inset-0 bg-gradient-to-t from-red-950/80 via-transparent to-transparent flex items-end p-10">
                             <div class="text-white max-w-2xl">

@@ -80,23 +80,30 @@
 
       <!-- IZQUIERDA: LOGOS + TEXTO -->
       <div class="flex items-center space-x-3">
-        <img src="imagenes/unicalogo.png" alt="Logo UNICA"
-             class="h-12 w-12 object-contain">
+    <!-- Logos clickeables -->
+    <div class="flex items-center space-x-2">
+        <img
+          src="imagenes/unicalogo.png"
+          alt="Logo UNICA"
+          class="h-14 w-14 object-contain cursor-pointer"
+          onclick="navigate('inicio')"
+        >
+        <img
+          src="imagenes/obstetricialogo.png"
+          alt="Logo Obstetricia"
+          class="h-14 w-14 object-contain cursor-pointer"
+          onclick="navigate('inicio')"
+        >
+    </div>
 
-        <img src="imagenes/obstetricialogo.png" alt="Logo Obstetricia"
-             class="h-12 w-12 object-contain">
-
-        <!-- Texto visible también en móvil -->
-        <div class="hidden sm:block leading-tight">
-          <h1 class="text-xs sm:text-sm font-bold text-red-900">
-            UNIVERSIDAD NACIONAL SAN LUIS GONZAGA
-          </h1>
-          <p class="text-[11px] sm:text-xs text-gray-600 font-semibold">
+    <!-- Texto intacto -->
+    <div class="hidden md:block">
+        <h1 class="text-sm font-bold text-red-900 leading-tight">
+            UNIVERSIDAD NACIONAL SAN LUIS GONZAGA<br>
             Facultad de Obstetricia
-          </p>
-        </div>
-      </div>
-
+        </h1>
+    </div>
+</div>
       <!-- DERECHA: BOTÓN + MENÚ -->
       <div class="flex items-center space-x-3">
 
@@ -108,7 +115,7 @@
               text-white bg-red-900 hover:bg-red-800"
 >
         <i data-lucide="monitor" class="w-5 h-5 mr-3"></i>
-        Aula Virtual
+      Aula Virtual
 </a>
 
 
@@ -209,46 +216,86 @@
         
         const views = {
             inicio: `
-                <div class="space-y-8">
-                <div class="relative rounded-3xl overflow-hidden h-[300px] sm:h-[380px] lg:h-[450px] shadow-2xl border-4 border-white">
-                        <img src="imagenes/banner.jpg" class="w-full h-full object-cover" alt="Banner Facultad">
-                        <div class="absolute inset-0 bg-gradient-to-t ... flex items-end p-5 sm:p-8 lg:p-10">
-                            <div class="text-white max-w-2xl">
-                                <h2
-  class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight text-center sm:text-left"
-  style="text-shadow: 2px 2px 6px rgba(0,0,0,0.3);"
+<div class="space-y-10">
+
+  <!-- BANNER -->
+  <div class="relative rounded-3xl overflow-hidden h-[300px] sm:h-[380px] lg:h-[450px] shadow-2xl border-4 border-white">
+
+    <img
+      src="imagenes/banner.jpg"
+      class="w-full h-full object-cover"
+      alt="Banner Facultad"
+    >
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+    <!-- CONTENIDO DEL BANNER -->
+    <div class="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 lg:p-10">
+      <div class="text-white max-w-2xl">
+
+        <h2
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 leading-tight text-center sm:text-left"
+          style="
+            text-shadow:
+              2px 2px 0 rgba(0,0,0,0.8),
+              4px 4px 12px rgba(0,0,0,0.6);
+          "
+        >
+          Excelencia en Salud Reproductiva
+        </h2>
+
+        <p class="text-lg sm:text-xl opacity-90 font-light italic text-center sm:text-left">
+          "Formando profesionales con vocación, ciencia y corazón."
+        </p>
+        <button
+  onclick="navigate('historia')"
+  class="mt-6 inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 text-white px-7 py-3 rounded-full font-semibold shadow-xl hover:bg-white/30 hover:scale-105 transition-all"
 >
-  Excelencia en Salud Reproductiva
-</h2>
+  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+  Conoce la Facultad
+</button>
 
 
 
-                                <p class="text-xl opacity-90 font-light italic">"Formando profesionales con vocación, ciencia y corazón."</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="bg-white p-8 rounded-2xl shadow-sm border-t-4 border-red-800">
-                            <div class="flex items-center mb-4">
-                                <div class="p-2 bg-pink-100 rounded-lg mr-3">
-                                    <i data-lucide="target" class="w-6 h-6 text-red-800"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-red-900">Misión</h3>
-                            </div>
-                            <p class="text-gray-600 leading-relaxed">Formar profesionales de obstetricia competentes, con base científica, humanística y ética, capaces de responder a las demandas de salud de la sociedad...</p>
-                        </div>
-                        <div class="bg-white p-8 rounded-2xl shadow-sm border-t-4 border-pink-400">
-                            <div class="flex items-center mb-4">
-                                <div class="p-2 bg-pink-100 rounded-lg mr-3">
-                                    <i data-lucide="eye" class="w-6 h-6 text-pink-600"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-red-900">Visión</h3>
-                            </div>
-                            <p class="text-gray-600 leading-relaxed">Ser una facultad líder y acreditada a nivel nacional e internacional, reconocida por la calidad de su enseñanza e investigación.</p>
-                        </div>
-                    </div>
-                </div>
-            `,
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MISIÓN / VISIÓN -->
+  <div class="grid md:grid-cols-2 gap-8">
+
+    <div class="bg-white p-8 rounded-2xl shadow-sm border-t-4 border-red-800">
+      <div class="flex items-center mb-4">
+        <div class="p-2 bg-pink-100 rounded-lg mr-3">
+          <i data-lucide="target" class="w-6 h-6 text-red-800"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-red-900">Misión</h3>
+      </div>
+      <p class="text-gray-600 leading-relaxed">
+        Formar profesionales de obstetricia competentes, con base científica,
+        humanística y ética, capaces de responder a las demandas de salud de la sociedad.
+      </p>
+    </div>
+
+    <div class="bg-white p-8 rounded-2xl shadow-sm border-t-4 border-pink-400">
+      <div class="flex items-center mb-4">
+        <div class="p-2 bg-pink-100 rounded-lg mr-3">
+          <i data-lucide="eye" class="w-6 h-6 text-pink-600"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-red-900">Visión</h3>
+      </div>
+      <p class="text-gray-600 leading-relaxed">
+        Ser una facultad líder y acreditada a nivel nacional e internacional,
+        reconocida por la calidad de su enseñanza e investigación.
+      </p>
+    </div>
+
+  </div>
+</div>
+`,
+
             historia: `
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-pink-100">
                     <h2 class="text-3xl font-bold text-red-900 mb-6 flex items-center">

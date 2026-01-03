@@ -64,37 +64,63 @@
 </head>
 <body class="bg-pink-50/30 text-gray-800">
 
-    <!-- Header Principal -->
-    <header class="bg-white border-b border-pink-100 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo UNICA (Izquierda) -->
-                <div class="flex items-center space-x-3">
-                    <img src="imagenes/unicalogo.png" alt="Logo UNICA" class="h-14 w-14 object-contain">
-                    <img src="imagenes/obstetricialogo.png" alt="Logo UNICA" class="h-14 w-14 object-contain">
-                    <div class="hidden md:block">
-                        <h1 class="text-sm font-bold text-red-900 leading-tight">UNIVERSIDAD NACIONAL SAN LUIS GONZAGA<br>Facultad de Obstetricia</h1>
-                    </div>
-                </div>
+   <!-- Header Principal -->
+<!-- HEADER PRINCIPAL -->
+<header id="main-header"
+  class="bg-white/95 backdrop-blur-md sticky top-0 z-50
+         border-b border-pink-100
+         shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
 
-            
+  <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <!-- Línea decorativa inferior -->
+    <div class="absolute inset-x-0 bottom-0 h-[2px]
+                bg-gradient-to-r from-transparent via-red-200 to-transparent"></div>
 
-                <!-- Logo Facultad e Interacción (Derecha) -->
-                <div class="flex items-center space-x-4">
-                    <img src="imagenes/unicalogo.png" alt="Logo UNICA" class="h-14 w-14 object-contain">
-                    <a href="https://aulavirtual.unica.edu.pe/" target="_blank" class="hidden md:flex items-center bg-guinda hover-bg-guinda text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors shadow-md">
-                        <i data-lucide="monitor" class="w-4 h-4 mr-2"></i>
-                        Aula Virtual
-                    </a>
-                    
-                    <!-- Botón Hamburguesa -->
-                    <button id="menu-toggle" class="lg:hidden text-red-900 focus:outline-none">
-                        <i data-lucide="menu" class="w-8 h-8"></i>
-                    </button>
-                </div>
-            </div>
+    <div class="flex justify-between items-center h-20">
+
+      <!-- IZQUIERDA: LOGOS + TEXTO -->
+      <div class="flex items-center space-x-3">
+        <img src="imagenes/unicalogo.png" alt="Logo UNICA"
+             class="h-12 w-12 object-contain">
+
+        <img src="imagenes/obstetricialogo.png" alt="Logo Obstetricia"
+             class="h-12 w-12 object-contain">
+
+        <!-- Texto visible también en móvil -->
+        <div class="hidden sm:block leading-tight">
+          <h1 class="text-xs sm:text-sm font-bold text-red-900">
+            UNIVERSIDAD NACIONAL SAN LUIS GONZAGA
+          </h1>
+          <p class="text-[11px] sm:text-xs text-gray-600 font-semibold">
+            Facultad de Obstetricia
+          </p>
         </div>
-    </header>
+      </div>
+
+      <!-- DERECHA: BOTÓN + MENÚ -->
+      <div class="flex items-center space-x-3">
+
+        <!-- Aula Virtual -->
+        <a href="https://aulavirtual.unica.edu.pe/"
+        target="_blank"
+        class="flex items-center bg-red-900 text-white px-2 py-2 sm:px-3 md:px-4 rounded-full text-[10px] sm:text-xs md:text-sm font-semibold shadow-md hover:bg-red-800 transition">
+        <i data-lucide="monitor" class="w-4 h-4 mr-2"></i>
+        Aula Virtual
+</a>
+
+
+        <!-- Botón Hamburguesa -->
+        <button id="menu-toggle"
+          class="lg:hidden text-red-900 focus:outline-none">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+
 
     <div class="flex min-h-screen">
         <!-- Sidebar / Menú Lateral -->
@@ -1207,5 +1233,19 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
             navigate('inicio');
         }
     </script>
+    
+    <script>
+  const header = document.getElementById("main-header");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 60) {
+      header.classList.add("py-1", "shadow-md");
+      header.classList.remove("py-3");
+    } else {
+      header.classList.add("py-3");
+      header.classList.remove("py-1", "shadow-md");
+    }
+  });
+</script>
 </body>
 </html>

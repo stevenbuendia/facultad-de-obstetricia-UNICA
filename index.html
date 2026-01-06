@@ -803,158 +803,169 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
                 </div>
             `,
             // Vistas adicionales
-            consejo: `
-<div>
-  <h2 class="text-3xl font-bold text-red-900 mb-8">Consejo de Facultad</h2>
+consejo: `
+<div class="max-w-7xl mx-auto px-4">
 
-  <!-- PRESIDENTE -->
-  <div class="mb-8">
-    <h3 class="text-red-800 font-bold mb-2">Presidente</h3>
-    <div class="overflow-x-auto bg-white rounded-xl border border-pink-200">
-      <table class="w-full text-sm">
-        <thead class="bg-gray-100 text-gray-700">
-          <tr>
-            <th class="p-3 text-left">Nombre y Apellido</th>
-            <th class="p-3 text-left">Cargo</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-t">
-            <td class="p-3">Dra. Rosa Elvira Ruiz Reyes</td>
-            <td class="p-3">Decana</td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- TÍTULO -->
+  <div class="text-center mb-12">
+    <h2 class="text-4xl font-bold text-red-900">Consejo de Facultad</h2>
+    <p class="text-gray-600 mt-2">Facultad de Obstetricia – UNICA</p>
+  </div>
+
+  <!-- GRID PRINCIPAL -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- PRESIDENCIA -->
+    <div class="bg-white rounded-2xl shadow-md border border-pink-200 p-6 text-center">
+      <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-red-100">
+        <svg class="w-8 h-8 text-red-800" fill="none" stroke="currentColor" stroke-width="1.5"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0" />
+        </svg>
+      </div>
+      <h3 class="font-bold text-red-900 mb-2">Presidencia</h3>
+      <p class="font-semibold">Dra. Rosa Elvira Ruiz Reyes</p>
+      <p class="text-sm text-gray-600">Decana</p>
     </div>
-  </div>
 
-  <!-- REPRESENTANTES DOCENTES -->
-  <div class="mb-10">
-    <h3 class="text-red-800 font-bold mb-2">Representantes de los Docentes</h3>
-    <div class="overflow-x-auto bg-white rounded-xl border border-pink-200">
-      <table class="w-full text-sm">
-        <thead class="bg-gray-100 text-gray-700">
-          <tr>
-            <th class="p-3 text-left">Nombre y Apellido</th>
-            <th class="p-3 text-left">Categoría</th>
-            <th class="p-3 text-left">Resolución</th>
-            <th class="p-3 text-center">Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${[
-            {
-              nombre: "Laos de Aguilar, Carmen Rosa",
-              categoria: "Ordinario Principal",
-              resolucion: "R.R. 323-R-UNICA-2024",
-              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
-            },
-            {
-              nombre: "Rojas Bernales, Cirilo Jesús",
-              categoria: "Ordinario Principal",
-              resolucion: "R.R. 323-R-UNICA-2024",
-              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf#"
-            },
-            {
-              nombre: "Alejo Huamán, Silverio",
-              categoria: "Ordinario Principal",
-              resolucion: "R.R. 323-R-UNICA-2024",
-              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
-            },
-            {
-              nombre: "Ramos Wilcor, Lizana Meyna",
-              categoria: "Ordinario Asociado",
-              resolucion: "R.R. 323-R-UNICA-2024",
-              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
-            },
-            {
-              nombre: "Junes Flores, Franklin Edward",
-              categoria: "Ordinario Asociado",
-              resolucion: "R.R. 323-R-UNICA-2024",
-              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
-            },
-            {
-              nombre: "Puctas Aciarra, Vanessa Fiorella",
-              categoria: "Ordinario Auxiliar",
-              resolucion: "R.R. 1593-R-UNICA-2024",
-              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
-            }
-          ].map(item => `
-            <tr class="border-t">
-              <td class="p-3">${item.nombre}</td>
-              <td class="p-3">${item.categoria}</td>
-              <td class="p-3">${item.resolucion}</td>
-              <td class="p-3 text-center">
-                <a href="${item.link}" target="_blank"
-                  class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1 rounded-lg transition">
-                  Descargar
-                </a>
-              </td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
+    <!-- DOCENTES -->
+    <div class="bg-white rounded-2xl shadow-md border border-pink-200 p-6">
+      <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-red-100">
+        <svg class="w-8 h-8 text-red-800" fill="none" stroke="currentColor" stroke-width="1.5"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 14l9-5-9-5-9 5 9 5zM12 14l6.16-3.422A12.083 12.083 0 0112 20.25c-2.673 0-5.182-.87-7.16-2.328L12 14z" />
+        </svg>
+      </div>
+
+      <h3 class="font-bold text-red-900 mb-4 text-center">Representantes Docentes</h3>
+
+      <button onclick="document.getElementById('docentes').classList.toggle('hidden')"
+        class="w-full bg-red-800 hover:bg-red-900 text-white text-sm font-bold py-2 rounded-xl">
+        Ver representantes
+      </button>
+
+      <div id="docentes" class="hidden mt-4 space-y-3 text-sm">
+        ${[
+          {
+            nombre: "Carmen Rosa Laos de Aguilar",
+            categoria: "Ordinario Principal",
+            resolucion: "R.R. 323-R-UNICA-2024",
+            link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
+          },
+          {
+            nombre: "Cirilo Jesús Rojas Bernales",
+            categoria: "Ordinario Principal",
+            resolucion: "R.R. 323-R-UNICA-2024",
+            link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
+          },
+          {
+            nombre: "Silverio Alejo Huamán",
+            categoria: "Ordinario Principal",
+            resolucion: "R.R. 323-R-UNICA-2024",
+            link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
+          },
+          {
+            nombre: "Lizana Meyna Ramos Wilcor",
+            categoria: "Ordinario Asociado",
+            resolucion: "R.R. 323-R-UNICA-2024",
+            link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
+          },
+          {
+            nombre: "Franklin Edward Junes Flores",
+            categoria: "Ordinario Asociado",
+            resolucion: "R.R. 323-R-UNICA-2024",
+            link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
+          },
+          {
+            nombre: "Vanessa Fiorella Puctas Aciarra",
+            categoria: "Ordinario Auxiliar",
+            resolucion: "R.R. 1593-R-UNICA-2024",
+            link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-1593-2024.pdf"
+          }
+        ].map(d => `
+          <div class="border rounded-xl p-3">
+            <p class="font-semibold">${d.nombre}</p>
+            <p class="text-gray-600">${d.categoria}</p>
+            <a href="${d.link}" target="_blank"
+              class="inline-block mt-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1 rounded-lg">
+              Descargar ${d.resolucion}
+            </a>
+          </div>
+        `).join("")}
+      </div>
     </div>
-  </div>
 
-  <!-- REPRESENTANTES ESTUDIANTES -->
-  <div class="mb-10">
-    <h3 class="text-red-800 font-bold mb-2">Representantes de los Estudiantes</h3>
-    <div class="overflow-x-auto bg-white rounded-xl border border-pink-200">
-      <table class="w-full text-sm">
-        <thead class="bg-gray-100 text-gray-700">
-          <tr>
-            <th class="p-3 text-left">Nombre y Apellido</th>
-            <th class="p-3 text-left">Resolución</th>
-            <th class="p-3 text-center">Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${[
-            {
-              nombre: "Clares Morón, Stassy Anika",
-              resolucion: "R.R. 1594-R-UNICA-2024",
-              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/09/28/RR-1594-2024.pdf"
-            },
-            {
-              nombre: "García Medina, Camila Jessa",
-              resolucion: "R.R. 1594-R-UNICA-2024",
-              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/09/28/RR-1594-2024.pdf"
-            },
-            {
-              nombre: "De la Rosa Rojas, Valeria Maddy",
-              resolucion: "R.R. 1594-R-UNICA-2024",
-              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/09/28/RR-1594-2024.pdf"
-            }
-          ].map(item => `
-            <tr class="border-t">
-              <td class="p-3">${item.nombre}</td>
-              <td class="p-3">${item.resolucion}</td>
-              <td class="p-3 text-center">
-                <a href="${item.link}" target="_blank"
-                  class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1 rounded-lg transition">
-                  Descargar
-                </a>
-              </td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
+    <!-- ESTUDIANTES -->
+    <div class="bg-white rounded-2xl shadow-md border border-pink-200 p-6">
+      <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-red-100">
+        <svg class="w-8 h-8 text-red-800" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5
+               s-3 1.34-3 3 1.34 3 3 3zM8 11
+               c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5
+               s-3 1.34-3 3 1.34 3 3 3zM8 13
+               c-2.33 0-7 1.17-7 3.5V19h14
+               v-2.5c0-2.33-4.67-3.5-7-3.5zM16
+               13c-.29 0-.62.02-.97.05
+               1.16.84 1.97 1.97 1.97 3.45V19
+               h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
+          />
+        </svg>
+      </div>
+
+      <h3 class="font-bold text-red-900 mb-4 text-center">Representantes Estudiantiles</h3>
+
+      <button onclick="document.getElementById('estudiantes').classList.toggle('hidden')"
+        class="w-full bg-red-800 hover:bg-red-900 text-white text-sm font-bold py-2 rounded-xl">
+        Ver representantes
+      </button>
+
+      <div id="estudiantes" class="hidden mt-4 space-y-3 text-sm">
+        ${[
+          {
+            nombre: "Stassy Anika Clares Morón",
+            resolucion: "R.R. 1594-R-UNICA-2024",
+            link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/09/28/RR-1594-2024.pdf"
+          },
+          {
+            nombre: "Camila Jessa García Medina",
+            resolucion: "R.R. 1594-R-UNICA-2024",
+            link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/09/28/RR-1594-2024.pdf"
+          },
+          {
+            nombre: "Valeria Maddy De la Rosa Rojas",
+            resolucion: "R.R. 1594-R-UNICA-2024",
+            link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/09/28/RR-1594-2024.pdf"
+          }
+        ].map(e => `
+          <div class="border rounded-xl p-3">
+            <p class="font-semibold">${e.nombre}</p>
+            <a href="${e.link}" target="_blank"
+              class="inline-block mt-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1 rounded-lg">
+              Descargar ${e.resolucion}
+            </a>
+          </div>
+        `).join("")}
+      </div>
+      
     </div>
+    <!-- BOTÓN PORTAL DE TRANSPARENCIA -->
+<div class="md:col-span-3 flex justify-center">
+  <a
+    href="https://www.unica.edu.pe/transparencia"
+    target="_blank"
+    class="bg-red-800 hover:bg-red-900 text-white font-semibold px-10 py-3 rounded-full transition"
+  >
+    Portal de Transparencia
+  </a>
+</div>
+
   </div>
 
-  <!-- BOTÓN FINAL -->
-  <div class="mt-8">
-    <a href="https://www.unica.edu.pe/transparencia/AutorOrganismos/facultad/f22/f22.php"
-       target="_blank"
-       class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-xl shadow">
-      Visitar Portal de Transparencia
-    </a>
-  </div>
 </div>
 `,
-
-
             programas: `
 <div>
   <h2 class="text-3xl font-bold text-red-900 mb-10 text-center uppercase">
@@ -1304,6 +1315,7 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
 </script>
 </body>
 </html>
+
 
 
 

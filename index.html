@@ -2184,612 +2184,238 @@ autoridades: `
   });
 </script>
 
-  <!-- =======================
-     CHATBOT FLOTANTE (HTML + CSS + JS)
-     - Más lógica (intents + FAQ + contexto)
-     - Manejo de ciclo, cambio de ciclo
-     - Sugerencias cuando no entiende
-     - Botones rápidos dinámicos
-======================= -->
+ <!-- BOTÓN FLOTANTE -->
+  <div id="chatbot-button"
+    class="fixed bottom-6 right-6 bg-red-900 text-white p-4 rounded-full shadow-2xl cursor-pointer z-50 hover:scale-[1.03] transition active:scale-[0.98]"
+    aria-label="Abrir chat"
+  >
+    <i data-lucide="message-circle"></i>
+  </div>
 
+  <!-- CHATBOT -->
+  <div id="chatbot"
+    class="fixed bottom-24 right-6 w-80 h-[520px] bg-white rounded-2xl shadow-2xl border border-rose-100 hidden flex flex-col z-50 overflow-hidden">
 
+    <!-- HEADER -->
+    <div class="bg-red-900 text-white px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="imagenes/avatarchat.png" class="w-9 h-9 rounded-full bg-white p-1" alt="Obstetra Virtual">
+        <div>
+          <p class="text-sm font-extrabold">Obstetra Virtual</p>
+          <p class="text-[11px] opacity-80">En línea</p>
+        </div>
+      </div>
+      <button id="close-chat" aria-label="Cerrar chat">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
 
-<!-- BOTÓN FLOTANTE -->
-<div id="chatbot-button"
-  class="fixed bottom-6 right-6 bg-red-900 text-white p-4 rounded-full shadow-2xl cursor-pointer z-50 hover:scale-[1.03] transition active:scale-[0.98]"
-  aria-label="Abrir chat">
-  <i data-lucide="message-circle"></i>
-</div>
+    <!-- MENSAJES -->
+    <div id="chat-messages"
+      class="flex-1 p-4 overflow-y-auto bg-slate-50 text-sm flex flex-col gap-3">
+    </div>
 
-<!-- CHATBOT -->
-<div id="chatbot"
-  class="fixed bottom-24 right-6 w-80 h-[520px] bg-white rounded-2xl shadow-2xl border border-rose-100 hidden flex flex-col overflow-hidden z-50">
+    <!-- ACCESOS RÁPIDOS -->
+    <div id="quick-access" class="p-3 bg-white border-t border-rose-100">
+      <p class="text-[11px] font-extrabold text-slate-400 mb-2 uppercase">
+        Accesos rápidos
+      </p>
 
-  <!-- HEADER -->
-  <div class="bg-red-900 text-white px-4 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <img src="imagenes/avatarchat.png" class="w-9 h-9 rounded-full bg-white p-1" alt="Obstetra Virtual">
-      <div>
-        <p class="text-sm font-extrabold">Obstetra Virtual</p>
-        <p class="text-[11px] opacity-80">En línea</p>
+      <div class="flex flex-wrap gap-2">
+        <button class="chip" data-q="historia"><i data-lucide="landmark" class="w-3 h-3"></i> Historia</button>
+        <button class="chip" data-q="autoridades"><i data-lucide="users" class="w-3 h-3"></i> Autoridades</button>
+        <button class="chip" data-q="docentes"><i data-lucide="graduation-cap" class="w-3 h-3"></i> Docentes</button>
+        <button class="chip" data-q="malla"><i data-lucide="book-open" class="w-3 h-3"></i> Malla</button>
+        <button class="chip" data-q="noticias"><i data-lucide="newspaper" class="w-3 h-3"></i> Noticias</button>
+        <button class="chip" data-q="contacto"><i data-lucide="mail" class="w-3 h-3"></i> Contáctanos</button>
       </div>
     </div>
-    <button id="close-chat" aria-label="Cerrar chat">
-      <i data-lucide="x" class="w-4 h-4"></i>
-    </button>
+
+    <!-- INPUT -->
+    <div class="p-3 border-t border-rose-100 bg-white flex gap-2">
+      <input id="chat-input" type="text" placeholder="Escribe tu consulta..."
+        class="flex-1 px-3 py-2 rounded-xl bg-slate-100 focus:outline-none">
+      <button id="send-btn" aria-label="Enviar mensaje" class="text-red-900 hover:text-red-800 transition">
+        <i data-lucide="send" class="w-5 h-5"></i>
+      </button>
+    </div>
   </div>
 
-  <!-- MENSAJES -->
-  <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-slate-50 text-sm flex flex-col gap-3"></div>
-
-  <!-- ACCESOS RÁPIDOS -->
-  <div id="quick-access" class="p-3 bg-white border-t border-rose-100">
-    <p class="text-[11px] font-extrabold text-slate-400 mb-2 uppercase">Accesos rápidos</p>
-    <div id="chips" class="flex flex-wrap gap-2"></div>
-  </div>
-
-  <!-- INPUT -->
-  <div class="p-3 border-t border-rose-100 bg-white flex gap-2">
-    <input id="chat-input" type="text" placeholder="Escribe tu consulta..."
-      class="flex-1 px-3 py-2 rounded-xl border border-rose-100 focus:outline-none" />
-    <button id="send-btn" aria-label="Enviar mensaje" class="text-red-900 hover:text-red-800 transition">
-      <i data-lucide="send" class="w-5 h-5"></i>
-    </button>
-  </div>
-</div>
-
-<style>
-  .chip {
-    background: #fffafc;
-    border: 1px solid #e2e8f0;
-    color: #475569;
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 800;
-    cursor: pointer;
-    display: inline-flex;
-    gap: 6px;
-    align-items: center;
-  }
-  .chip:hover {
-    background: #7f1d1d;
-    color: white;
-    border-color: #7f1d1d;
-  }
-  .msg {
-    max-width: 86%;
-    padding: 10px 14px;
-    border-radius: 14px;
-    font-size: 13px;
-    line-height: 1.35;
-    white-space: pre-line;
-  }
-  .msg-bot {
-    background: white;
-    border: 1px solid #e5e7eb;
-    align-self: flex-start;
-  }
-  .msg-user {
-    background: #7f1d1d;
-    color: white;
-    align-self: flex-end;
-  }
-  .msg small {
-    display: block;
-    opacity: .7;
-    margin-top: 6px;
-    font-size: 10px;
-  }
-  .msg-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
-  }
-  .msg-actions button {
-    background: #fffafc;
-    border: 1px solid #e2e8f0;
-    color: #7f1d1d;
-    padding: 6px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 800;
-    cursor: pointer;
-  }
-  .msg-actions button:hover {
-    background: #7f1d1d;
-    color: #fff;
-    border-color: #7f1d1d;
-  }
-</style>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  if (window.lucide) lucide.createIcons();
-
-  const btn = document.getElementById("chatbot-button");
-  const chat = document.getElementById("chatbot");
-  const close = document.getElementById("close-chat");
-  const messages = document.getElementById("chat-messages");
-  const input = document.getElementById("chat-input");
-  const sendBtn = document.getElementById("send-btn");
-  const chipsWrap = document.getElementById("chips");
-  const quickAccess = document.getElementById("quick-access");
-
-  // ======= CONFIGURACIÓN =======
-  // Conecta aquí tu navegación real si existe
-  function navigate(section){
-    // Ejemplo: window.location.href = `#${section}`;
-    // o tu router / scroll a secciones
-    console.log("navigate:", section);
-  }
-
-  // ======= UTILIDADES =======
-  function normalizar(t){
-    return (t || "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^\w\s¿?¡!]/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-  }
-  function contieneAlguna(t, arr){ return arr.some(x => t.includes(x)); }
-  function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
-
-  function extraerNumero(t){
-    const m = t.match(/\b(10|[1-9])\b/);
-    return m ? parseInt(m[1], 10) : null;
-  }
-  function detectarCiclo(t){
-    const map = {
-      1:["1","primer","primero","1er"],
-      2:["2","segundo","2do"],
-      3:["3","tercer","tercero","3er"],
-      4:["4","cuarto","4to"],
-      5:["5","quinto","5to"],
-      6:["6","sexto","6to"],
-      7:["7","septimo","7mo"],
-      8:["8","octavo","8vo"],
-      9:["9","noveno","9no"],
-      10:["10","decimo","10mo"]
-    };
-    for (const c in map){
-      if (map[c].some(p => t.includes(p))) return parseInt(c, 10);
+  <!-- ESTILOS CHAT -->
+  <style>
+    .chip{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      color:#475569;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:800;
+      cursor:pointer;
+      display:inline-flex;
+      gap:6px;
+      align-items:center;
     }
-    const n = extraerNumero(t);
-    if (n && n >= 1 && n <= 10) return n;
-    return null;
-  }
+    .chip:hover{ background:#7f1d1d; color:white; border-color:#7f1d1d; }
 
-  function scrollDown(){
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  function addMessage(type, html){
-    const div = document.createElement("div");
-    div.className = `msg ${type === "bot" ? "msg-bot" : "msg-user"}`;
-    div.innerHTML = html;
-    messages.appendChild(div);
-    scrollDown();
-    return div;
-  }
-
-  // Crea botones debajo de un mensaje del bot
-  function addActions(msgDiv, actions = []){
-    if (!actions.length) return;
-    const wrap = document.createElement("div");
-    wrap.className = "msg-actions";
-    actions.forEach(a => {
-      const b = document.createElement("button");
-      b.textContent = a.label;
-      b.onclick = () => enviar(a.payload, { silentUser: false });
-      wrap.appendChild(b);
-    });
-    msgDiv.appendChild(wrap);
-    scrollDown();
-  }
-
-  // ======= ESTADO =======
-  const state = {
-    primerMensaje: true,
-    esperandoCiclo: true,
-    ciclo: null,
-    ultimaSeccion: null, // "malla", "docentes"...
-    nombre: null,
-  };
-
-  // ======= RESPUESTAS / MENÚ =======
-  const respuestas = {
-    saludo: [
-      "¡Hola! 😊 Soy <b>Obstetra Virtual</b>. ¿En qué ciclo estás? (1–10)\nEj: <i>3</i> o <i>tercer ciclo</i>.",
-      "¡Buenas! 😄 Para ayudarte mejor dime tu ciclo (1–10)."
-    ],
-    pedirCiclo: [
-      "¿En qué ciclo estás? (Ej: <i>primer ciclo</i> o <i>3</i>)",
-      "Para darte info exacta, dime tu ciclo (1–10)."
-    ],
-    confirmCiclo: (c) =>
-      `Perfecto ✅ Estás en el <b>ciclo ${c}</b>.\n\n¿Sobre qué tema quieres info?`,
-
-    menuText:
-`📌 <b>Menú rápido</b>
-• malla
-• docentes
-• autoridades
-• programas
-• eventos
-• noticias
-• contacto
-• faq / preguntas
-• cambiar ciclo`,
-
-    noEntiendo: [
-      "No lo entendí del todo 😅 ¿Puedes decirlo de otra forma?",
-      "Mmm, creo que no te seguí. ¿Te refieres a malla, docentes, programas, eventos o contacto?"
-    ],
-  };
-
-  // Acciones rápidas (chips)
-  const CHIP_ACTIONS = [
-    { label:"Historia", payload:"historia" },
-    { label:"Autoridades", payload:"autoridades" },
-    { label:"Docentes", payload:"docentes" },
-    { label:"Malla", payload:"malla" },
-    { label:"Noticias", payload:"noticias" },
-    { label:"Contáctanos", payload:"contacto" },
-    { label:"FAQ", payload:"faq" },
-  ];
-
-  // ======= FAQ (AMPLÍA AQUÍ) =======
-  const FAQ = {
-    general: [
-      { q: ["horario", "horarios", "atencion"], a: "Los horarios dependen del área/servicio. Si me dices si buscas *atención*, *clases* o *oficina*, te guío mejor." },
-      { q: ["matricula", "matricular", "inscripcion", "inscribirme"], a: "La matrícula suele publicarse en *Noticias/Comunicados*. ¿Buscas *fechas* o *requisitos*?" },
-      { q: ["requisitos", "documentos", "tramites"], a: "Depende del trámite. ¿Es para *matrícula*, *prácticas* o *titulación*?" },
-      { q: ["beca", "becas", "descuento"], a: "Las becas/descuentos se anuncian por comunicados. Revisa *Noticias* y dime si buscas requisitos o convocatoria." },
-    ],
-    malla: [
-      { q: ["cursos", "asignaturas", "materias"], a: "Puedo orientarte con los cursos por ciclo. ¿Quieres lista completa o solo los principales?" },
-      { q: ["creditos", "créditos"], a: "Los créditos dependen del plan de estudios. ¿Buscas créditos por curso o por ciclo?" },
-      { q: ["prerequisitos", "pre requisitos", "requisitos de curso"], a: "Los prerrequisitos se ven en el plan de estudios/sílabos. Dime el curso y te digo qué buscar." },
-    ],
-    docentes: [
-      { q: ["correo", "email", "contactar"], a: "Para contactar docentes, normalmente se usa correo institucional. ¿Buscas un docente en específico?" },
-      { q: ["tutoria", "tutorias", "asesoria", "asesor"], a: "Las tutorías suelen anunciarse por curso o coordinación. ¿De qué curso o tema es tu tutoría?" },
-    ],
-    noticias: [
-      { q: ["comunicado", "comunicados"], a: "Los comunicados se publican en la sección de Noticias/Avisos. ¿Buscas uno de *matrícula*, *prácticas* o *eventos*?" },
-    ],
-    contacto: [
-      { q: ["ubicacion", "direccion", "ubicación", "dirección"], a: "La ubicación se encuentra en *Contacto*. ¿Quieres llegar por mapa o solo la dirección?" },
-      { q: ["telefono", "teléfono", "celular"], a: "El teléfono suele estar en la sección *Contacto*. ¿Necesitas oficina académica o atención general?" },
-    ]
-  };
-
-  function responderFAQ(t){
-    const packs = [];
-    packs.push(...(FAQ.general || []));
-    if (state.ultimaSeccion && FAQ[state.ultimaSeccion]) packs.push(...FAQ[state.ultimaSeccion]);
-
-    for (const item of packs){
-      if (item.q.some(k => normalizar(k).split(" ").every(w => t.includes(w)) || t.includes(normalizar(k)))){
-        return item.a;
-      }
+    .msg{
+      max-width:80%;
+      padding:10px 14px;
+      border-radius:14px;
+      font-size:13px;
+      line-height:1.35;
     }
-    return null;
-  }
+    .msg-bot{
+      background:white;
+      border:1px solid #e5e7eb;
+      align-self:flex-start;
+    }
+    .msg-user{
+      background:#7f1d1d;
+      color:white;
+      align-self:flex-end;
+    }
+  </style>
 
-  function sugerir(t){
-    const sug = [];
-    if (contieneAlguna(t, ["matri","inscrip","pago","requis"])) sug.push("noticias", "faq");
-    if (contieneAlguna(t, ["curso","mater","asign","malla","plan"])) sug.push("malla");
-    if (contieneAlguna(t, ["profe","docen","profesor"])) sug.push("docentes");
-    if (contieneAlguna(t, ["correo","tel","ubi","direccion","contact"])) sug.push("contacto");
-    if (contieneAlguna(t, ["autor","decan","director","coordin"])) sug.push("autoridades");
-    return sug.length ? `¿Te refieres a: <b>${[...new Set(sug)].join(", ")}</b>?` : null;
-  }
+  <!-- CHATBOT SCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
 
-  // ======= INTENTS (más lógica) =======
-  const INTENTS = [
-    {
-      name: "saludo",
-      match: (t) => contieneAlguna(t, ["hola","buenas","buenos dias","buenas tardes","buenas noches","hey"]),
-      run: () => pick(respuestas.saludo),
-      actions: () => [{label:"Dime mi ciclo", payload:"cambiar ciclo"}, {label:"Ver menú", payload:"menu"}]
-    },
-    {
-      name: "menu",
-      match: (t) => contieneAlguna(t, ["menu","opciones","ayuda","help","que puedes hacer","que haces","comandos"]),
-      run: () => respuestas.menuText,
-      actions: () => [
-        {label:"Malla", payload:"malla"},
-        {label:"Docentes", payload:"docentes"},
-        {label:"Noticias", payload:"noticias"},
-        {label:"Contacto", payload:"contacto"},
-        {label:"Cambiar ciclo", payload:"cambiar ciclo"},
-      ]
-    },
-    {
-      name: "cambiar_ciclo",
-      match: (t) => contieneAlguna(t, ["cambiar ciclo","otro ciclo","actualizar ciclo","modificar ciclo","volver a ciclo","reiniciar ciclo"]),
-      run: () => {
-        state.esperandoCiclo = true;
-        state.ciclo = null;
-        return "Claro ✅ Dime tu nuevo ciclo (1–10).";
+      const btn = document.getElementById("chatbot-button");
+      const chat = document.getElementById("chatbot");
+      const close = document.getElementById("close-chat");
+      const messages = document.getElementById("chat-messages");
+      const input = document.getElementById("chat-input");
+      const sendBtn = document.getElementById("send-btn");
+      const chips = document.querySelectorAll(".chip");
+      const quickAccess = document.getElementById("quick-access");
+
+      let primerMensaje = true;
+      let esperandoCiclo = true;
+
+      function normalizar(t){
+        return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
       }
-    },
-    {
-      name: "inicio",
-      match: (t) => contieneAlguna(t, ["inicio","principal","home","volver"]),
-      run: () => {
-        state.ultimaSeccion = "inicio";
-        navigate("inicio");
-        return "Volvamos al inicio 🏠\n\n" + respuestas.menuText;
-      }
-    },
-    {
-      name: "historia",
-      match: (t) => contieneAlguna(t, ["historia","reseña","resena"]),
-      run: () => {
-        state.ultimaSeccion = "historia";
-        navigate("historia");
-        return "📖 Historia: aquí puedes conocer la historia de la Facultad.\n¿Quieres un resumen o ir a la sección?";
-      },
-      actions: () => [{label:"Ir a Historia", payload:"ir historia"}, {label:"Menú", payload:"menu"}]
-    },
-    {
-      name: "ir_historia",
-      match: (t) => t === "ir historia",
-      run: () => {
-        navigate("historia");
-        return "Listo ✅ Te llevo a Historia.";
-      }
-    },
-    {
-      name: "autoridades",
-      match: (t) => contieneAlguna(t, ["autoridades","decan","decanato","director","coordinador","consejo"]),
-      run: () => {
-        state.ultimaSeccion = "autoridades";
-        navigate("autoridades");
-        return "🏛️ Autoridades: ¿qué buscas?\n• Decanato\n• Dirección\n• Consejo\n• Coordinación";
-      },
-      actions: () => [
-        {label:"Ver Autoridades", payload:"ir autoridades"},
-        {label:"Consejo", payload:"consejo"},
-        {label:"Menú", payload:"menu"}
-      ]
-    },
-    {
-      name: "ir_autoridades",
-      match: (t) => t === "ir autoridades",
-      run: () => { navigate("autoridades"); return "✅ Abriendo Autoridades."; }
-    },
-    {
-      name: "consejo",
-      match: (t) => contieneAlguna(t, ["consejo"]),
-      run: () => { navigate("consejo"); state.ultimaSeccion="autoridades"; return "✅ Abriendo Consejo de Facultad."; }
-    },
-    {
-      name: "docentes",
-      match: (t) => contieneAlguna(t, ["docentes","docente","profesor","profe","catedratico"]),
-      run: () => {
-        state.ultimaSeccion = "docentes";
-        navigate("docentes");
-        return "👩‍🏫 Docentes: dime si buscas por *curso*, *nombre* o *ciclo*.\nEj: “docentes de ginecología”.";
-      },
-      actions: () => [
-        {label:"Ver Docentes", payload:"ir docentes"},
-        {label:"Buscar por curso", payload:"buscar docentes por curso"},
-        {label:"Menú", payload:"menu"}
-      ]
-    },
-    {
-      name: "ir_docentes",
-      match: (t) => t === "ir docentes",
-      run: () => { navigate("docentes"); return "✅ Abriendo Docentes."; }
-    },
-    {
-      name: "malla",
-      match: (t) => contieneAlguna(t, ["malla","cursos","plan de estudios","asignaturas","materias","silabo","silabus","sílabos"]),
-      run: () => {
-        state.ultimaSeccion = "malla";
-        navigate("malla");
-        if (!state.ciclo) return "Para orientarte mejor con la malla necesito tu ciclo (1–10).";
-        return `📚 Malla (ciclo ${state.ciclo}): ¿qué necesitas?\n• ver cursos\n• ver créditos\n• ver prerrequisitos`;
-      },
-      actions: () => [
-        {label:"Ver Malla", payload:"ir malla"},
-        {label:"Cursos", payload:"ver cursos"},
-        {label:"Créditos", payload:"ver creditos"},
-        {label:"Prerrequisitos", payload:"ver prerrequisitos"},
-      ]
-    },
-    {
-      name: "ir_malla",
-      match: (t) => t === "ir malla",
-      run: () => { navigate("malla"); return "✅ Abriendo Malla curricular."; }
-    },
-    {
-      name: "programas",
-      match: (t) => contieneAlguna(t, ["programas","programa academico","carrera","oferta academica","pregrado","posgrado"]),
-      run: () => {
-        state.ultimaSeccion = "programas";
-        navigate("programas");
-        return "🎓 Programas: ¿te interesa *pregrado*, *posgrado* o *cursos/talleres*?";
-      },
-      actions: () => [{label:"Ver Programas", payload:"ir programas"}, {label:"Menú", payload:"menu"}]
-    },
-    {
-      name: "ir_programas",
-      match: (t) => t === "ir programas",
-      run: () => { navigate("programas"); return "✅ Abriendo Programas académicos."; }
-    },
-    {
-      name: "eventos",
-      match: (t) => contieneAlguna(t, ["evento","eventos","charla","taller","congreso","seminario"]),
-      run: () => {
-        state.ultimaSeccion = "eventos";
-        navigate("eventos");
-        return "📅 Eventos: ¿quieres ver los *próximos* o buscar por *tema*?\nEj: “taller de neonatología”.";
-      },
-      actions: () => [{label:"Ver Eventos", payload:"ir eventos"}, {label:"Próximos", payload:"proximos eventos"}]
-    },
-    {
-      name: "ir_eventos",
-      match: (t) => t === "ir eventos",
-      run: () => { navigate("eventos"); return "✅ Abriendo Eventos."; }
-    },
-    {
-      name: "noticias",
-      match: (t) => contieneAlguna(t, ["noticias","aviso","avisos","comunicado","comunicados"]),
-      run: () => {
-        state.ultimaSeccion = "noticias";
-        navigate("noticias");
-        return "📰 Noticias y comunicados: ¿buscas algo de *matrícula*, *prácticas* o *eventos*?";
-      },
-      actions: () => [{label:"Ver Noticias", payload:"ir noticias"}, {label:"Matrícula", payload:"matricula"}]
-    },
-    {
-      name: "ir_noticias",
-      match: (t) => t === "ir noticias",
-      run: () => { navigate("noticias"); return "✅ Abriendo Noticias."; }
-    },
-    {
-      name: "contacto",
-      match: (t) => contieneAlguna(t, ["contacto","correo","telefono","teléfono","whatsapp","ubicacion","ubicación","direccion","dirección"]),
-      run: () => {
-        state.ultimaSeccion = "contacto";
-        navigate("contacto");
-        return "📩 Contacto: dime si necesitas *correo*, *teléfono*, *ubicación* o *horario de atención*.";
-      },
-      actions: () => [{label:"Ver Contacto", payload:"ir contacto"}, {label:"Menú", payload:"menu"}]
-    },
-    {
-      name: "ir_contacto",
-      match: (t) => t === "ir contacto",
-      run: () => { navigate("contacto"); return "✅ Abriendo Contacto."; }
-    },
-    {
-      name: "faq",
-      match: (t) => contieneAlguna(t, ["faq","preguntas","preguntas frecuentes","duda","dudas"]),
-      run: () => {
-        state.ultimaSeccion = "faq";
-        return "❓ Preguntas frecuentes: dime tu duda (ej: matrícula, horarios, requisitos).";
-      },
-      actions: () => [{label:"Matrícula", payload:"matricula"}, {label:"Horarios", payload:"horarios"}, {label:"Requisitos", payload:"requisitos"}]
-    },
-  ];
 
-  // ======= MOTOR DE RESPUESTA =======
-  function procesar(texto){
-    const t = normalizar(texto);
-
-    // Estado: esperando ciclo
-    if (state.esperandoCiclo){
-      const c = detectarCiclo(t);
-      if (c){
-        state.ciclo = c;
-        state.esperandoCiclo = false;
-        state.ultimaSeccion = "general";
-        return {
-          text: respuestas.confirmCiclo(c),
-          actions: [
-            {label:"Malla", payload:"malla"},
-            {label:"Docentes", payload:"docentes"},
-            {label:"Noticias", payload:"noticias"},
-            {label:"Menú", payload:"menu"},
-          ]
+      function detectarCiclo(t){
+        const map = {
+          1:["primer","1"],2:["segundo","2"],3:["tercer","3"],
+          4:["cuarto","4"],5:["quinto","5"],6:["sexto","6"],
+          7:["septimo","7"],8:["octavo","8"],9:["noveno","9"],10:["decimo","10"]
         };
+        for (let c in map){
+          if (map[c].some(p => t.includes(p))) return c;
+        }
+        return null;
       }
 
-      if (t.length > 0 && !contieneAlguna(t, ["hola","buenas","menu","ayuda"])){
-        return { text: "Antes de eso, dime tu ciclo (1–10) 🙂", actions: [{label:"Cambiar ciclo", payload:"cambiar ciclo"}] };
+      function bot(msg){
+        messages.innerHTML += `<div class="msg msg-bot">${msg}</div>`;
+        messages.scrollTop = messages.scrollHeight;
       }
 
-      return { text: pick(respuestas.pedirCiclo), actions: [{label:"1", payload:"1"}, {label:"3", payload:"3"}, {label:"5", payload:"5"}, {label:"10", payload:"10"}] };
-    }
-
-    // Intents
-    for (const intent of INTENTS){
-      if (intent.match(t)){
-        const text = intent.run(t);
-        const actions = intent.actions ? intent.actions() : [];
-        return { text, actions };
+      function user(msg){
+        messages.innerHTML += `<div class="msg msg-user">${msg}</div>`;
+        messages.scrollTop = messages.scrollHeight;
       }
-    }
 
-    // FAQ
-    const faq = responderFAQ(t);
-    if (faq){
-      return { text: "✅ " + faq, actions: [{label:"Menú", payload:"menu"}] };
-    }
+      function procesar(texto){
+        const t = normalizar(texto);
 
-    // Sugerencias
-    const s = sugerir(t);
-    if (s){
-      return { text: s + "\n\n" + respuestas.menuText, actions: [{label:"Menú", payload:"menu"}] };
-    }
+        if (esperandoCiclo){
+          const ciclo = detectarCiclo(t);
+          if (ciclo){
+            esperandoCiclo = false;
+            return `Perfecto 😊 Estás en el ciclo ${ciclo}.<br><br>
+            Puedes preguntarme sobre malla curricular, historia, autoridades, docentes o noticias.`;
+          }
+          return "¿En qué ciclo estás? (ejemplo: primer ciclo, ciclo 3)";
+        }
 
-    return { text: pick(respuestas.noEntiendo) + "\n\n" + respuestas.menuText, actions: [{label:"Menú", payload:"menu"}] };
-  }
+        if (t.includes("inicio") || t.includes("principal")){
+          return `Volvamos al inicio 🏠<br><br>
+          <button onclick="navigate('inicio')" class="text-red-800 font-extrabold underline">Ir a Inicio</button>`;
+        }
+        if (t.includes("historia")){
+          return `Conoce la historia de la Facultad 🏛️<br><br>
+          <button onclick="navigate('historia')" class="text-red-800 font-extrabold underline">Ver Historia</button>`;
+        }
+        if (t.includes("autoridades") || t.includes("decano")){
+          return `Estas son las autoridades de la Facultad 👥<br><br>
+          <button onclick="navigate('autoridades')" class="text-red-800 font-extrabold underline">Ver Autoridades</button>`;
+        }
+        if (t.includes("docentes") || t.includes("docente") || t.includes("profesor")){
+          return `Aquí puedes conocer a nuestros docentes 👩‍🏫👨‍🏫<br><br>
+          <button onclick="navigate('docentes')" class="text-red-800 font-extrabold underline">Ver Docentes</button>`;
+        }
+        if (t.includes("malla") || t.includes("cursos") || t.includes("plan de estudios")){
+          return `Revisa los cursos de la carrera por ciclo 📚<br><br>
+          <button onclick="navigate('malla')" class="text-red-800 font-extrabold underline">Ver Malla Curricular</button>`;
+        }
+        if (t.includes("consejo")){
+          return `Conoce el Consejo de Facultad 🧑‍⚖️<br><br>
+          <button onclick="navigate('consejo')" class="text-red-800 font-extrabold underline">Ver Consejo de Facultad</button>`;
+        }
+        if (t.includes("programas") || t.includes("programa academico") || t.includes("carrera")){
+          return `Estos son los programas académicos que ofrecemos 🎓<br><br>
+          <button onclick="navigate('programas')" class="text-red-800 font-extrabold underline">Ver Programas Académicos</button>`;
+        }
+        if (t.includes("evento") || t.includes("infraestructura")){
+          return `Conoce nuestros eventos e infraestructura 🏫<br><br>
+          <button onclick="navigate('eventos')" class="text-red-800 font-extrabold underline">Ver Eventos e Infraestructura</button>`;
+        }
+        if (t.includes("noticias") || t.includes("aviso") || t.includes("comunicado")){
+          return `Mantente informada con las últimas noticias 📰<br><br>
+          <button onclick="navigate('noticias')" class="text-red-800 font-extrabold underline">Ver Noticias y Avisos</button>`;
+        }
+        if (t.includes("testimonio") || t.includes("experiencia")){
+          return `Descubre experiencias de nuestras estudiantes 💬<br><br>
+          <button onclick="navigate('testimonios')" class="text-red-800 font-extrabold underline">Ver Testimonios</button>`;
+        }
+        if (t.includes("preguntas") || t.includes("frecuentes") || t.includes("duda")){
+          return `Aquí resolvemos las dudas más comunes ❓<br><br>
+          <button onclick="navigate('faq')" class="text-red-800 font-extrabold underline">Ver Preguntas Frecuentes</button>`;
+        }
+        if (t.includes("contacto") || t.includes("contactanos") || t.includes("correo")){
+          return `¿Deseas comunicarte con nosotros? 📩<br><br>
+          <button onclick="navigate('contacto')" class="text-red-800 font-extrabold underline">Ir a Contáctanos</button>`;
+        }
+        if (t.includes("hola") || t.includes("buenas")){
+          return "¡Hola! 😊 ¿En qué puedo ayudarte hoy?";
+        }
 
-  // ======= ENVIAR =======
-  function enviar(txt, opts = {}){
-    const texto = (txt || "").toString();
-    if (!texto.trim()) return;
+        return "Puedo ayudarte a encontrar cualquier información dentro de la página 💬";
+      }
 
-    if (!opts.silentUser){
-      addMessage("user", texto);
-    }
-    input.value = "";
+      function enviar(txt){
+        user(txt);
+        input.value = "";
 
-    const out = procesar(texto);
+        if (primerMensaje && quickAccess){
+          quickAccess.style.display = "none";
+          primerMensaje = false;
+        }
 
-    setTimeout(() => {
-      const botMsg = addMessage("bot", out.text);
-      addActions(botMsg, out.actions || []);
-    }, 180);
-  }
+        setTimeout(() => bot(procesar(txt)), 250);
+      }
 
-  // ======= CHIPS / QUICK ACCESS =======
-  function renderChips(){
-    chipsWrap.innerHTML = "";
-    CHIP_ACTIONS.forEach(c => {
-      const b = document.createElement("button");
-      b.className = "chip";
-      b.textContent = c.label;
-      b.onclick = () => enviar(c.payload);
-      chipsWrap.appendChild(b);
+      btn.onclick = () => {
+        chat.classList.toggle("hidden");
+        if (!messages.children.length){
+          bot("Hola 👋 soy Obstetra Virtual. ¿En qué ciclo académico te encuentras?");
+        }
+      };
+
+      close.onclick = () => chat.classList.add("hidden");
+      sendBtn.onclick = () => input.value && enviar(input.value);
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && input.value) enviar(input.value);
+      });
+
+      chips.forEach((c) => c.onclick = () => enviar(c.dataset.q));
     });
-  }
-
-  // ======= EVENTOS UI =======
-  btn.onclick = () => {
-    chat.classList.toggle("hidden");
-    if (!chat.classList.contains("hidden")) {
-      input.focus();
-      if (state.primerMensaje){
-        state.primerMensaje = false;
-        renderChips();
-        quickAccess.style.display = "block";
-        addMessage("bot", "Hola 👋 Soy <b>Obstetra Virtual</b>. ¿En qué ciclo académico te encuentras? (1–10)");
-        addMessage("bot", "Ejemplos: <i>3</i>, <i>tercer ciclo</i>, <i>ciclo 5</i>.");
-      }
-    }
-  };
-
-  close.onclick = () => chat.classList.add("hidden");
-
-  sendBtn.onclick = () => enviar(input.value);
-
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") enviar(input.value);
-  });
-
-});
-</script>
+  </script>
 <!-- Aviso de Felicitación Reina San Luisana 2026 -->
 <div id="reinaAviso" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 overflow-auto">
 
@@ -2889,6 +2515,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 

@@ -625,42 +625,34 @@ body{
 <!-- ================= ESTADÍSTICAS PREMIUM ================= -->
 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
 
-  <div class="stat-card group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 relative cursor-pointer overflow-hidden">
+  <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
     <h4 class="text-4xl font-extrabold text-red-800">13</h4>
     <p class="text-slate-600 mt-2">Años de experiencia</p>
-
-    <p class="stat-info absolute left-0 bottom-0 w-full px-4 py-2 bg-red-50 text-red-900 text-sm rounded-b-2xl
-       translate-y-full opacity-0 transition-all duration-500 ease-out">
+    <p class="mt-2 text-sm text-red-900 bg-red-50 p-3 rounded-xl">
       La Facultad de Obstetricia cuenta con 13 años formando profesionales competentes y comprometidas.
     </p>
   </div>
 
-  <div class="stat-card group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 relative cursor-pointer overflow-hidden">
+  <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
     <h4 class="text-4xl font-extrabold text-red-800">+1000</h4>
     <p class="text-slate-600 mt-2">Egresadas</p>
-
-    <p class="stat-info absolute left-0 bottom-0 w-full px-4 py-2 bg-red-50 text-red-900 text-sm rounded-b-2xl
-       translate-y-full opacity-0 transition-all duration-500 ease-out">
+    <p class="mt-2 text-sm text-red-900 bg-red-50 p-3 rounded-xl">
       Más de 1000 egresadas han llevado la excelencia de nuestra facultad a todo el país.
     </p>
   </div>
 
-  <div class="stat-card group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 relative cursor-pointer overflow-hidden">
+  <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
     <h4 class="text-4xl font-extrabold text-red-800">+10</h4>
     <p class="text-slate-600 mt-2">Convenios Hospitalarios</p>
-
-    <p class="stat-info absolute left-0 bottom-0 w-full px-4 py-2 bg-red-50 text-red-900 text-sm rounded-b-2xl
-       translate-y-full opacity-0 transition-all duration-500 ease-out">
+    <p class="mt-2 text-sm text-red-900 bg-red-50 p-3 rounded-xl">
       Tenemos convenios con más de 10 hospitales para prácticas profesionales.
     </p>
   </div>
 
-  <div class="stat-card group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 relative cursor-pointer overflow-hidden">
+  <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
     <h4 class="text-4xl font-extrabold text-red-800">+100</h4>
     <p class="text-slate-600 mt-2">Docentes Calificados</p>
-
-    <p class="stat-info absolute left-0 bottom-0 w-full px-4 py-2 bg-red-50 text-red-900 text-sm rounded-b-2xl
-       translate-y-full opacity-0 transition-all duration-500 ease-out">
+    <p class="mt-2 text-sm text-red-900 bg-red-50 p-3 rounded-xl">
       Contamos con más de 100 docentes altamente calificados y experimentados.
     </p>
   </div>
@@ -1839,30 +1831,21 @@ autoridades: `
     window.addEventListener("load", () => navigate("inicio"));
   </script>
 
-
-<!-- ================= JS PARA MÓVIL ================= -->
+<!-- ================= JS PARA CLICK EN MÓVIL Y DESKTOP ================= -->
 <script>
-  // Detecta si es móvil
-  const isMobile = window.innerWidth < 768;
-
-  if (isMobile) {
-    const cards = document.querySelectorAll('.stat-card');
-    cards.forEach(card => {
-      const info = card.querySelector('.stat-info');
-      card.addEventListener('click', () => {
-        if(info.classList.contains('translate-y-full')){
-          info.classList.remove('translate-y-full', 'opacity-0');
-          info.classList.add('translate-y-0', 'opacity-100');
-        } else {
-          info.classList.add('translate-y-full', 'opacity-0');
-          info.classList.remove('translate-y-0', 'opacity-100');
-        }
-      });
+  const cards = document.querySelectorAll('.stat-card');
+  cards.forEach(card => {
+    const info = card.querySelector('.stat-info');
+    card.addEventListener('click', () => {
+      if(info.style.maxHeight && info.style.maxHeight !== "0px"){
+        info.style.maxHeight = "0";
+      } else {
+        info.style.maxHeight = info.scrollHeight + "px";
+      }
     });
-  }
+  });
 </script>
 
-  
   <!-- =======================
      CHATBOT FLOTANTE (HTML + CSS + JS)
      - Más lógica (intents + FAQ + contexto)
@@ -1870,6 +1853,8 @@ autoridades: `
      - Sugerencias cuando no entiende
      - Botones rápidos dinámicos
 ======================= -->
+
+
 
 <!-- BOTÓN FLOTANTE -->
 <div id="chatbot-button"
@@ -2566,5 +2551,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
-
-

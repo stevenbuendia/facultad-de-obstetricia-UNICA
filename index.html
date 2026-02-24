@@ -625,47 +625,42 @@ body{
 <!-- ================= ESTADÍSTICAS PREMIUM ================= -->
 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
 
-  <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 relative cursor-pointer overflow-hidden">
+  <div class="stat-card group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 relative cursor-pointer overflow-hidden">
     <h4 class="text-4xl font-extrabold text-red-800">13</h4>
     <p class="text-slate-600 mt-2">Años de experiencia</p>
 
-    <!-- Info adicional animada -->
-    <p class="absolute left-0 bottom-0 w-full px-4 py-2 bg-red-50 text-red-900 text-sm rounded-b-2xl
-             translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100
-             transition-all duration-500 ease-out">
+    <p class="stat-info absolute left-0 bottom-0 w-full px-4 py-2 bg-red-50 text-red-900 text-sm rounded-b-2xl
+       translate-y-full opacity-0 transition-all duration-500 ease-out">
       La Facultad de Obstetricia cuenta con 13 años formando profesionales competentes y comprometidas.
     </p>
   </div>
 
-  <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 relative cursor-pointer overflow-hidden">
+  <div class="stat-card group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 relative cursor-pointer overflow-hidden">
     <h4 class="text-4xl font-extrabold text-red-800">+1000</h4>
     <p class="text-slate-600 mt-2">Egresadas</p>
 
-    <p class="absolute left-0 bottom-0 w-full px-4 py-2 bg-red-50 text-red-900 text-sm rounded-b-2xl
-             translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100
-             transition-all duration-500 ease-out">
+    <p class="stat-info absolute left-0 bottom-0 w-full px-4 py-2 bg-red-50 text-red-900 text-sm rounded-b-2xl
+       translate-y-full opacity-0 transition-all duration-500 ease-out">
       Más de 1000 egresadas han llevado la excelencia de nuestra facultad a todo el país.
     </p>
   </div>
 
-  <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 relative cursor-pointer overflow-hidden">
+  <div class="stat-card group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 relative cursor-pointer overflow-hidden">
     <h4 class="text-4xl font-extrabold text-red-800">+10</h4>
     <p class="text-slate-600 mt-2">Convenios Hospitalarios</p>
 
-    <p class="absolute left-0 bottom-0 w-full px-4 py-2 bg-red-50 text-red-900 text-sm rounded-b-2xl
-             translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100
-             transition-all duration-500 ease-out">
+    <p class="stat-info absolute left-0 bottom-0 w-full px-4 py-2 bg-red-50 text-red-900 text-sm rounded-b-2xl
+       translate-y-full opacity-0 transition-all duration-500 ease-out">
       Tenemos convenios con más de 10 hospitales para prácticas profesionales.
     </p>
   </div>
 
-  <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 relative cursor-pointer overflow-hidden">
+  <div class="stat-card group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 relative cursor-pointer overflow-hidden">
     <h4 class="text-4xl font-extrabold text-red-800">+100</h4>
     <p class="text-slate-600 mt-2">Docentes Calificados</p>
 
-    <p class="absolute left-0 bottom-0 w-full px-4 py-2 bg-red-50 text-red-900 text-sm rounded-b-2xl
-             translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100
-             transition-all duration-500 ease-out">
+    <p class="stat-info absolute left-0 bottom-0 w-full px-4 py-2 bg-red-50 text-red-900 text-sm rounded-b-2xl
+       translate-y-full opacity-0 transition-all duration-500 ease-out">
       Contamos con más de 100 docentes altamente calificados y experimentados.
     </p>
   </div>
@@ -1844,6 +1839,30 @@ autoridades: `
     window.addEventListener("load", () => navigate("inicio"));
   </script>
 
+
+<!-- ================= JS PARA MÓVIL ================= -->
+<script>
+  // Detecta si es móvil
+  const isMobile = window.innerWidth < 768;
+
+  if (isMobile) {
+    const cards = document.querySelectorAll('.stat-card');
+    cards.forEach(card => {
+      const info = card.querySelector('.stat-info');
+      card.addEventListener('click', () => {
+        if(info.classList.contains('translate-y-full')){
+          info.classList.remove('translate-y-full', 'opacity-0');
+          info.classList.add('translate-y-0', 'opacity-100');
+        } else {
+          info.classList.add('translate-y-full', 'opacity-0');
+          info.classList.remove('translate-y-0', 'opacity-100');
+        }
+      });
+    });
+  }
+</script>
+
+  
   <!-- =======================
      CHATBOT FLOTANTE (HTML + CSS + JS)
      - Más lógica (intents + FAQ + contexto)
@@ -2547,4 +2566,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 

@@ -1,228 +1,510 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facultad de Obstetricia | UNICA</title>
-    <link rel="icon" type="image/png" href="imagenes/obstetricialogo.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="imagenes/obstetricialogo.png">
-    <!-- Tailwind CSS para diseño moderno y responsive -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        
-        :root {
-            --color-guinda: #800000;
-            --color-guinda-light: #a52a2a;
-            --color-rosa: #fbcfe8; /* pink-200 */
-            --color-rosa-fuerte: #db2777; /* pink-600 */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facultad de Obstetricia | UNICA</title>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
+  <link rel="icon" type="image/png" href="imagenes/obstetricialogo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="imagenes/obstetricialogo.png" />
 
-        .sidebar-transition {
-            transition: transform 0.3s ease-in-out;
-        }
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        .active-link {
-            background-color: #fff1f2;
-            color: var(--color-guinda);
-            border-right: 4px solid var(--color-guinda);
-        }
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-        .content-fade {
-            animation: fadeIn 0.4s ease-in-out;
-        }
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+:root{
+  --brand:#7f1d1d;
+  --brand-hover:#991b1b;
+  --accent:#db2777;
 
-        /* Estilos personalizados para el scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #fdf2f2;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--color-guinda);
-            border-radius: 4px;
-        }
+  --bg-soft:#fff7fb;
+  --bg-white:#ffffff;
 
-        .bg-guinda { background-color: var(--color-guinda); }
-        .text-guinda { color: var(--color-guinda); }
-        .border-guinda { border-color: var(--color-guinda); }
-        .hover-bg-guinda:hover { background-color: var(--color-guinda-light); }
-    </style>
+  --text-main:#0f172a;
+  --text-muted:#475569;
+
+  --shadow-soft: 0 10px 30px rgba(0,0,0,.08);
+  --shadow-strong: 0 25px 60px rgba(0,0,0,.15);
+
+  --ring: rgba(127, 29, 29, .35);
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"Inter",sans-serif;
+  color:var(--text-main);
+  background:
+    radial-gradient(1000px 500px at 10% 0%, rgba(219,39,119,.08), transparent 60%),
+    radial-gradient(800px 400px at 90% 10%, rgba(127,29,29,.08), transparent 60%),
+    linear-gradient(to bottom, var(--bg-soft), #fff);
+}
+
+/* ================= SCROLLBAR ================= */
+::-webkit-scrollbar{ width:8px; }
+::-webkit-scrollbar-track{ background:#fff1f2; }
+::-webkit-scrollbar-thumb{
+  background:var(--brand);
+  border-radius:999px;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar-transition{
+  transition: transform .3s ease, box-shadow .3s ease;
+  will-change: transform;
+}
+
+.overlay-fade{
+  transition: opacity .25s ease;
+}
+
+/* ================= ACTIVE NAV ================= */
+.active-link{
+  background: linear-gradient(
+    90deg,
+    rgba(127,29,29,.10),
+    rgba(219,39,119,.06)
+  );
+  color: var(--brand);
+  border-right: 4px solid var(--brand);
+  font-weight:600;
+}
+
+/* ================= PAGE TRANSITIONS ================= */
+.content-anim-in{
+  animation: pageIn .4s ease both;
+}
+.content-anim-out{
+  animation: pageOut .2s ease both;
+}
+
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform: translateY(15px);
+    filter: blur(3px);
+  }
+  to{
+    opacity:1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes pageOut{
+  from{ opacity:1; transform: translateY(0); }
+  to{ opacity:0; transform: translateY(8px); }
+}
+
+/* ================= HERO ================= */
+.hero {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  animation: heroZoom 18s ease-out forwards;
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      100deg,
+      rgba(0,0,0,.75) 0%,
+      rgba(0,0,0,.45) 40%,
+      rgba(0,0,0,.15) 100%
+    );
+}
+
+.hero-content{
+  position:absolute;
+  transform: translateY(120px);
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  color:white;
+}
+
+.hero-content h1{
+  font-size: clamp(28px, 5vw, 56px);
+  font-weight:800;
+  line-height:1.1;
+  text-shadow:
+    0 4px 15px rgba(0,0,0,.5),
+    0 8px 35px rgba(0,0,0,.6);
+}
+
+.hero-content p{
+  margin-top:18px;
+  font-size: clamp(14px, 2vw, 20px);
+  max-width:600px;
+  color: rgba(255,255,255,.95);
+  text-shadow: 0 3px 12px rgba(0,0,0,.45);
+}
+
+/* ================= HERO BUTTONS ================= */
+.hero-buttons a{
+  padding:14px 30px;
+  border-radius:16px;
+  font-weight:600;
+  letter-spacing:.3px;
+
+  backdrop-filter: blur(10px);
+  border:2px solid rgba(255,255,255,.7);
+  background: rgba(255,255,255,.12);
+  color:white;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.25),
+    inset 0 0 0 1px rgba(255,255,255,.15);
+
+  transition: all .35s ease;
+}
+
+.hero-buttons a:hover{
+  background:white;
+  color:var(--brand);
+  transform: translateY(-4px);
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.35);
+}
+/* Botón principal */
+.btn-hero{
+  padding:14px 30px;
+  border-radius:16px;
+  font-weight:600;
+  letter-spacing:.3px;
+  cursor:pointer;
+
+  backdrop-filter: blur(10px);
+  border:2px solid rgba(255,255,255,.7);
+  background: rgba(255,255,255,.15);
+  color:white;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.25),
+    inset 0 0 0 1px rgba(255,255,255,.2);
+
+  transition: all .35s ease;
+}
+
+.btn-hero:hover{
+  background:white;
+  color:var(--brand);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0,0,0,.35);
+}
+
+/* Variante secundaria */
+.btn-hero-outline{
+  background: transparent;
+  border:2px solid white;
+}
+/* ================= CARDS UNIFORMES ================= */
+.card{
+  background: var(--bg-white);
+  border-radius:22px;
+  box-shadow: var(--shadow-soft);
+  transition: all .3s ease;
+}
+
+.card:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-strong);
+}
+
+/* ================= REVEAL SCROLL ================= */
+.reveal{
+  opacity:0;
+  transform: translateY(15px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.reveal.show{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* ================= FOCUS ================= */
+:focus-visible{
+  outline:none;
+  box-shadow: 0 0 0 4px var(--ring);
+  border-radius:12px;
+}
+
+/* ================= REDUCE MOTION ================= */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{
+    animation:none !important;
+    transition:none !important;
+  }
+}
+
+/* ================= UTILIDADES ================= */
+.bg-brand{ background-color: var(--brand); }
+.text-brand{ color: var(--brand); }
+.hover-bg-brand:hover{ background-color: var(--brand-hover); }
+  </style>
 </head>
-<body class="bg-pink-50/30 text-gray-800">
 
-   <!-- Header Principal -->
-<!-- HEADER PRINCIPAL -->
-<header id="main-header"
-  class="bg-white/95 backdrop-blur-md sticky top-0 z-50
-         border-b border-pink-100
-         shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
+<body class="text-slate-900">
+  <!-- Skip link (accesibilidad) -->
+  <a href="#main-content"
+     class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-white focus:px-4 focus:py-2 focus:rounded-xl focus:shadow-lg">
+    Saltar al contenido
+  </a>
 
-  <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 relative">
-    <!-- Línea decorativa inferior -->
-    <div class="absolute inset-x-0 bottom-0 h-[2px]
-                bg-gradient-to-r from-transparent via-red-200 to-transparent"></div>
+  <!-- HEADER PRINCIPAL -->
+  <header id="main-header"
+    class="bg-white/92 backdrop-blur-md sticky top-0 z-50 border-b border-rose-100
+           shadow-[0_8px_30px_rgba(15,23,42,0.06)]">
+    <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-rose-200 to-transparent"></div>
 
-    <div class="flex justify-between items-center h-20">
+      <div class="flex justify-between items-center h-20">
+        <!-- IZQUIERDA -->
+        <div class="flex items-center space-x-3">
+          <div class="flex items-center space-x-2">
+            <img
+              src="imagenes/unicalogo.png"
+              alt="Logo UNICA"
+              class="h-14 w-14 object-contain cursor-pointer hover:scale-[1.03] transition"
+              onclick="navigate('inicio')"
+            />
+            <img
+              src="imagenes/obstetricialogo.png"
+              alt="Logo Obstetricia"
+              class="h-14 w-14 object-contain cursor-pointer hover:scale-[1.03] transition"
+              onclick="navigate('inicio')"
+            />
+          </div>
 
-      <!-- IZQUIERDA: LOGOS + TEXTO -->
-      <div class="flex items-center space-x-3">
-    <!-- Logos clickeables -->
-    <div class="flex items-center space-x-2">
-        <img
-          src="imagenes/unicalogo.png"
-          alt="Logo UNICA"
-          class="h-14 w-14 object-contain cursor-pointer"
-          onclick="navigate('inicio')"
-        >
-        <img
-          src="imagenes/obstetricialogo.png"
-          alt="Logo Obstetricia"
-          class="h-14 w-14 object-contain cursor-pointer"
-          onclick="navigate('inicio')"
-        >
-    </div>
+          <div class="hidden md:block">
+            <h1 class="text-sm font-bold text-red-900 leading-tight">
+              UNIVERSIDAD NACIONAL SAN LUIS GONZAGA<br />
+              Facultad de Obstetricia
+            </h1>
+          </div>
+        </div>
 
-    <!-- Texto intacto -->
-    <div class="hidden md:block">
-        <h1 class="text-sm font-bold text-red-900 leading-tight">
-            UNIVERSIDAD NACIONAL SAN LUIS GONZAGA<br>
-            Facultad de Obstetricia
-        </h1>
-    </div>
+       <!-- DERECHA -->
+<div class="flex items-center space-x-3">
+  
+  <!-- Aula Virtual Universidad -->
+  <a
+    href="https://aulavirtual.unica.edu.pe"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="hidden sm:inline-flex items-center px-4 py-3 text-sm font-semibold rounded-xl
+           text-white bg-brand hover:bg-brand/90 shadow-sm transition active:scale-[0.98]"
+  >
+    <i data-lucide="monitor" class="w-5 h-5 mr-3"></i>
+    Campus Virtual UNICA
+  </a>
+
+  <!-- Aula Virtual Facultad de Obstetricia -->
+  <a
+    href="https://virtualfis.milaulas.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="hidden sm:inline-flex items-center px-4 py-3 text-sm font-semibold rounded-xl
+           text-white bg-pink-600 hover:bg-pink-700 shadow-sm transition active:scale-[0.98]"
+  >
+    <i data-lucide="graduation-cap" class="w-5 h-5 mr-3"></i>
+    Aula Virtual Obstetricia
+  </a>
+
 </div>
-      <!-- DERECHA: BOTÓN + MENÚ -->
-      <div class="flex items-center space-x-3">
 
-        <!-- Aula Virtual -->
-        <a 
-        href="https://aulavirtual.unica.edu.pe"
-        target="_blank"
-        class="flex items-center px-4 py-3 text-sm font-medium rounded-lg
-              text-white bg-red-900 hover:bg-red-800"
->
-        <i data-lucide="monitor" class="w-5 h-5 mr-3"></i>
-      Aula Virtual
-</a>
-
-
-
-        <!-- Botón Hamburguesa -->
-        <button id="menu-toggle"
-          class="lg:hidden text-red-900 focus:outline-none">
-          <i data-lucide="menu" class="w-7 h-7"></i>
-        </button>
-
+          <!-- Botón Hamburguesa -->
+          <button id="menu-toggle" class="lg:hidden text-red-900 focus:outline-none" aria-label="Abrir menú">
+            <i data-lucide="menu" class="w-7 h-7"></i>
+          </button>
+        </div>
       </div>
     </div>
+  </header>
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar / Menú -->
+    <aside
+      id="sidebar"
+      class="fixed top-20 bottom-0 left-0 bg-white border-r border-rose-100 w-72 z-40
+             sidebar-transition -translate-x-full lg:translate-x-0 lg:static
+             shadow-[0_20px_60px_rgba(15,23,42,0.08)] lg:shadow-none"
+      aria-label="Menú lateral"
+    >
+      <nav class="mt-4 px-2 space-y-1 overflow-y-auto h-full pb-10">
+        <p class="px-4 pt-2 pb-3 text-[11px] font-bold uppercase tracking-widest text-slate-400">
+          Navegación
+        </p>
+
+        <a href="#" onclick="navigate('inicio')" class="nav-item flex items-center px-4 py-3 text-sm font-semibold rounded-xl text-slate-700 hover:bg-rose-50 group transition">
+          <i data-lucide="home" class="w-5 h-5 mr-3 text-rose-400 group-hover:text-red-800"></i> Inicio
+        </a>
+        <a href="#" onclick="navigate('historia')" class="nav-item flex items-center px-4 py-3 text-sm font-semibold rounded-xl text-slate-700 hover:bg-rose-50 group transition">
+          <i data-lucide="book-open" class="w-5 h-5 mr-3 text-rose-400 group-hover:text-red-800"></i> Historia
+        </a>
+        <a href="#" onclick="navigate('autoridades')" class="nav-item flex items-center px-4 py-3 text-sm font-semibold rounded-xl text-slate-700 hover:bg-rose-50 group transition">
+          <i data-lucide="users" class="w-5 h-5 mr-3 text-rose-400 group-hover:text-red-800"></i> Autoridades
+        </a>
+        <a href="#" onclick="navigate('consejo')" class="nav-item flex items-center px-4 py-3 text-sm font-semibold rounded-xl text-slate-700 hover:bg-rose-50 group transition">
+          <i data-lucide="gantt-chart-square" class="w-5 h-5 mr-3 text-rose-400 group-hover:text-red-800"></i> Consejo de Facultad
+        </a>
+        <a href="#" onclick="navigate('programas')" class="nav-item flex items-center px-4 py-3 text-sm font-semibold rounded-xl text-slate-700 hover:bg-rose-50 group transition">
+          <i data-lucide="graduation-cap" class="w-5 h-5 mr-3 text-rose-400 group-hover:text-red-800"></i> Programas Académicos
+        </a>
+        <a href="#" onclick="navigate('docentes')" class="nav-item flex items-center px-4 py-3 text-sm font-semibold rounded-xl text-slate-700 hover:bg-rose-50 group transition">
+          <i data-lucide="user-square-2" class="w-5 h-5 mr-3 text-rose-400 group-hover:text-red-800"></i> Docentes
+        </a>
+        <a href="#" onclick="navigate('malla')" class="nav-item flex items-center px-4 py-3 text-sm font-semibold rounded-xl text-slate-700 hover:bg-rose-50 group transition">
+          <i data-lucide="clipboard-list" class="w-5 h-5 mr-3 text-rose-400 group-hover:text-red-800"></i> Malla Curricular
+        </a>
+        <a href="#" onclick="navigate('eventos')" class="nav-item flex items-center px-4 py-3 text-sm font-semibold rounded-xl text-slate-700 hover:bg-rose-50 group transition">
+          <i data-lucide="building-2" class="w-5 h-5 mr-3 text-rose-400 group-hover:text-red-800"></i> Eventos e Infraestructura
+        </a>
+        <a href="#" onclick="navigate('noticias')" class="nav-item flex items-center px-4 py-3 text-sm font-semibold rounded-xl text-slate-700 hover:bg-rose-50 group transition">
+          <i data-lucide="megaphone" class="w-5 h-5 mr-3 text-rose-400 group-hover:text-red-800"></i> Noticias y Avisos
+        </a>
+        <a href="#" onclick="navigate('testimonios')" class="nav-item flex items-center px-4 py-3 text-sm font-semibold rounded-xl text-slate-700 hover:bg-rose-50 group transition">
+          <i data-lucide="message-square" class="w-5 h-5 mr-3 text-rose-400 group-hover:text-red-800"></i> Testimonios
+        </a>
+        <a href="#" onclick="navigate('contacto')" class="nav-item flex items-center px-4 py-3 text-sm font-semibold rounded-xl text-slate-700 hover:bg-rose-50 group transition">
+          <i data-lucide="mail" class="w-5 h-5 mr-3 text-rose-400 group-hover:text-red-800"></i> Contáctanos
+        </a>
+
+        <div class="px-4 pt-6">
+          <a
+            href="https://aulavirtual.unica.edu.pe"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sm:hidden inline-flex w-full items-center justify-center px-4 py-3 text-sm font-semibold rounded-xl
+                   text-white bg-brand hover-bg-brand shadow-sm transition active:scale-[0.98]"
+          >
+            <i data-lucide="monitor" class="w-5 h-5 mr-3"></i>
+            Aula Virtual
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Contenido -->
+    <main class="flex-1 p-6 lg:p-10 overflow-x-hidden">
+      <div id="main-content" class="max-w-6xl mx-auto">
+        <!-- Loader -->
+        <div class="flex flex-col items-center justify-center min-h-[60vh] text-center">
+          <i data-lucide="loader-2" class="w-12 h-12 text-red-800 animate-spin mb-4"></i>
+          <p class="text-xl text-slate-600">Cargando...</p>
+        </div>
+      </div>
+    </main>
   </div>
-</header>
 
+  <!-- Overlay -->
+  <div id="overlay" class="fixed inset-0 bg-slate-950/30 z-30 hidden lg:hidden overlay-fade"></div>
 
+  <script>
+    // Icons
+    lucide.createIcons();
 
-    <div class="flex min-h-screen">
-        <!-- Sidebar / Menú Lateral -->
-        <aside
-  id="sidebar"
-  class="fixed top-20 bottom-0 left-0 bg-white border-r border-pink-100 w-64 z-40
-         sidebar-transition -translate-x-full lg:translate-x-0 lg:static">
-          <nav class="mt-4 px-2 space-y-1 overflow-y-auto h-full">
-                <a href="#" onclick="navigate('inicio')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
-                    <i data-lucide="home" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Inicio
-                </a>
-                <a href="#" onclick="navigate('historia')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
-                    <i data-lucide="book-open" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Historia
-                </a>
-                <a href="#" onclick="navigate('autoridades')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
-                    <i data-lucide="users" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Autoridades
-                </a>
-                <a href="#" onclick="navigate('consejo')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
-                    <i data-lucide="gantt-chart-square" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Consejo de Facultad
-                </a>
-                <a href="#" onclick="navigate('programas')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
-                    <i data-lucide="graduation-cap" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Programas Académicos
-                </a>
-                <a href="#" onclick="navigate('docentes')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
-                    <i data-lucide="user-square-2" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Docentes
-                </a>
-                <a href="#" onclick="navigate('malla')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
-                    <i data-lucide="clipboard-list" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Malla Curricular
-                </a>
-                <a href="#" onclick="navigate('eventos')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
-                    <i data-lucide="building-2" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Eventos e Infraestructura
-                </a>
-                <a href="#" onclick="navigate('noticias')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
-                    <i data-lucide="megaphone" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Noticias y Avisos
-                </a>
-                <a href="#" onclick="navigate('testimonios')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
-                    <i data-lucide="message-square" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Testimonios
-                </a>
-                <a href="#" onclick="navigate('faq')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
-                    <i data-lucide="help-circle" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Preguntas Frecuentes
-                </a>
-                <a href="#" onclick="navigate('contacto')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
-                    <i data-lucide="mail" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Contáctanos
-                </a>
-            </nav>
-        </aside>
+    // Mobile menu
+    const menuToggle = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
 
-        <!-- Área de Contenido Principal -->
-        <main class="flex-1 p-6 lg:p-10 overflow-x-hidden">
-            <div id="main-content" class="content-fade max-w-6xl mx-auto">
-                <!-- Cargador Inicial -->
-                <div class="flex flex-col items-center justify-center min-h-[60vh] text-center">
-                    <i data-lucide="loader-2" class="w-12 h-12 text-red-800 animate-spin mb-4"></i>
-                    <p class="text-xl text-gray-600">Cargando...</p>
-                </div>
-            </div>
-        </main>
-    </div>
+    function toggleMenu(){
+      sidebar.classList.toggle("-translate-x-full");
+      overlay.classList.toggle("hidden");
+      overlay.classList.toggle("opacity-0");
+      overlay.classList.toggle("opacity-100");
+    }
 
-    <!-- Overlay para móvil -->
-    <div id="overlay" class="fixed inset-0 bg-red-900 bg-opacity-20 z-30 hidden lg:hidden"></div>
+    menuToggle.addEventListener("click", toggleMenu);
+    overlay.addEventListener("click", toggleMenu);
 
-    <script>
-        // Inicializar Iconos
-        lucide.createIcons();
+    // Content + navigation
+    const contentArea = document.getElementById("main-content");
 
-        // Control de Menú Móvil
-        const menuToggle = document.getElementById('menu-toggle');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
+    // Helper: wrap injected view with reveal support
+    function wrapView(html){
+      return `
+        <div class="content-anim-in">
+          <div class="space-y-10">
+            ${html}
+          </div>
+        </div>
+      `;
+    }
 
-        function toggleMenu() {
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden');
-        }
+    // Add reveal class to common blocks inside content
+    function applyRevealToContent(root){
+      const selectors = [
+        "section",
+        ".card",
+        ".bg-white",
+        ".rounded-2xl",
+        ".rounded-3xl",
+        ".shadow-sm",
+        ".shadow-lg",
+        ".shadow-xl",
+        ".grid",
+        ".columns-1",
+        "h2",
+        "h3"
+      ];
 
-        menuToggle.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
+      const nodes = root.querySelectorAll(selectors.join(","));
+      nodes.forEach((n) => n.classList.add("reveal"));
+      setupRevealObserver(root);
+    }
 
-        // Sistema de Navegación Dinámica
-        const contentArea = document.getElementById('main-content');
-        
-        const views = {
-            inicio: `
+    let revealObserver = null;
+    function setupRevealObserver(root){
+      if (revealObserver) revealObserver.disconnect();
+
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("show");
+            revealObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      root.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+    }
+
+    const views = {
+      inicio: `
 <div class="space-y-10">
 
   <!-- BANNER -->
   <div class="relative rounded-3xl overflow-hidden h-[300px] sm:h-[380px] lg:h-[450px] shadow-2xl border-4 border-white">
 
     <img
-      src="imagenes/banner.jpg"
+      src="imagenes/banner.jpeg"
       class="w-full h-full object-cover"
       alt="Banner Facultad"
     >
@@ -242,7 +524,7 @@
               4px 4px 12px rgba(0,0,0,0.6);
           "
         >
-          Excelencia en Salud Reproductiva
+          Facultad de Obstetricia<br>
         </h2>
 
         <p class="text-lg sm:text-xl opacity-90 font-light italic text-center sm:text-left">
@@ -263,67 +545,187 @@
     </div>
   </div>
 
-  <!-- MISIÓN / VISIÓN -->
-  <div class="grid md:grid-cols-2 gap-8">
 
-    <div class="bg-white p-8 rounded-2xl shadow-sm border-t-4 border-red-800">
+ <!-- ================= ESTADÍSTICAS PREMIUM ================= -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+
+  <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+    <h4 class="text-4xl font-extrabold text-red-800 counter" data-target="25">13</h4>
+    <p class="text-slate-600 mt-2">Años de experiencia</p>
+  </div>
+
+  <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+    <h4 class="text-4xl font-extrabold text-red-800 counter" data-target="800">+1000</h4>
+    <p class="text-slate-600 mt-2">Egresadas</p>
+  </div>
+
+  <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+    <h4 class="text-4xl font-extrabold text-red-800 counter" data-target="15">+10</h4>
+    <p class="text-slate-600 mt-2">Convenios Hospitalarios</p>
+  </div>
+
+  <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+    <h4 class="text-4xl font-extrabold text-red-800 counter" data-target="100">+100</h4>
+    <p class="text-slate-600 mt-2">Docentes Calificados</p>
+  </div>
+
+</div>
+
+  <!-- ================= MISIÓN / VISIÓN ================= -->
+  <div class="grid md:grid-cols-2 gap-10">
+
+    <!-- Misión -->
+    <div class="bg-white p-8 rounded-2xl shadow-md border border-rose-100 border-t-4 border-red-800">
       <div class="flex items-center mb-4">
-        <div class="p-2 bg-pink-100 rounded-lg mr-3">
+        <div class="p-3 bg-rose-100 rounded-lg mr-4">
           <i data-lucide="target" class="w-6 h-6 text-red-800"></i>
         </div>
         <h3 class="text-2xl font-bold text-red-900">Misión</h3>
       </div>
-      <p class="text-gray-600 leading-relaxed">
-        Formar profesionales de obstetricia competentes, con base científica,
-        humanística y ética, capaces de responder a las demandas de salud de la sociedad.
+      <p class="text-slate-600 leading-relaxed">
+        Formar profesionales de obstetricia competentes, con sólida base científica,
+        humanística y ética, capaces de responder a las necesidades de salud
+        materno-infantil y reproductiva de la sociedad.
       </p>
     </div>
 
-    <div class="bg-white p-8 rounded-2xl shadow-sm border-t-4 border-pink-400">
+    <!-- Visión -->
+    <div class="bg-white p-8 rounded-2xl shadow-md border border-rose-100 border-t-4 border-pink-500">
       <div class="flex items-center mb-4">
-        <div class="p-2 bg-pink-100 rounded-lg mr-3">
+        <div class="p-3 bg-rose-100 rounded-lg mr-4">
           <i data-lucide="eye" class="w-6 h-6 text-pink-600"></i>
         </div>
         <h3 class="text-2xl font-bold text-red-900">Visión</h3>
       </div>
-      <p class="text-gray-600 leading-relaxed">
+      <p class="text-slate-600 leading-relaxed">
         Ser una facultad líder y acreditada a nivel nacional e internacional,
-        reconocida por la calidad de su enseñanza e investigación.
+        reconocida por la calidad académica, investigación e innovación en salud.
       </p>
     </div>
 
   </div>
+
+  <!-- ================= ¿POR QUÉ ESTUDIAR? ================= -->
+  <div class="bg-rose-50 p-12 rounded-3xl text-center shadow-inner">
+
+    <h3 class="text-3xl font-bold text-red-900 mb-6">
+      ¿Por qué estudiar Obstetricia?
+    </h3>
+
+    <p class="text-slate-700 max-w-3xl mx-auto leading-relaxed text-lg">
+      Porque acompañar la vida desde su inicio es una vocación que combina ciencia,
+      sensibilidad y compromiso social. Nuestra facultad te prepara con formación
+      clínica, ética y humanística para impactar positivamente en la salud
+      reproductiva y materno-infantil.
+    </p>
+
+  </div>
+
+  <!-- ================= TESTIMONIO ================= -->
+  <div class="bg-white p-12 rounded-3xl shadow-lg border border-rose-100 text-center">
+
+    <i data-lucide="quote" class="w-10 h-10 text-red-800 mx-auto mb-6"></i>
+
+    <p class="italic text-slate-600 text-lg max-w-3xl mx-auto">
+      "Estudiar Obstetricia aquí transformó mi vocación en una profesión con
+      impacto real en la vida de muchas familias."
+    </p>
+
+    <p class="mt-6 font-semibold text-red-800">
+      — Lic. María Pérez, Promoción 2020
+    </p>
+
+  </div>
+
 </div>
-`,
-
-            historia: `
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-pink-100">
-                    <h2 class="text-3xl font-bold text-red-900 mb-6 flex items-center">
-                        <i data-lucide="history" class="mr-3 text-pink-600"></i> Nuestra Historia
-                    </h2>
-                    <img src="imagenes/historia.jpg" class="w-full h-72 object-cover rounded-2xl mb-8 shadow-md" alt="Foto histórica">
-                    <div class="max-w-4xl mx-auto space-y-6 text-gray-700 leading-relaxed">
-                        <p class="first-letter:text-5xl first-letter:font-bold first-letter:text-red-800 first-letter:mr-3 first-letter:float-left">La historia de esta facultad es un relato de perseverancia profesional. </p>
-                        <p>Aunque la UNICA opera desde los años 60, la Facultad de Obstetricia es una institución administrativamente joven, nacida del esfuerzo colectivo de obstetrices que buscaron autonomía académica durante más de dos décadas.
-<p>De la iniciativa a la realidad (1990 - 2013)
-El camino inició formalmente en la década de 1990, cuando un grupo visionario de profesionales —entre ellas Marina Yataco Aguirre, Amparo Cahua Jayo, Virginia Cuba Calderón y Carmen Laos Anchante— impulsó el proyecto para crear una escuela profesional independiente. Su objetivo era jerarquizar la profesión y atender la urgente demanda de salud materna en la región Ica.
-A pesar de lograr avances administrativos mediante resoluciones vicerrectorales en 1990 y 1995, el proyecto tardó varios años en materializarse completamente debido a procesos burocráticos internos de la universidad.
-
-<p>El hito definitivo llegó en el año 2013, momento en el que se consolidó su independencia de otras facultades de ciencias de la salud.
-
-<p><b>La facultad fue creada el 15 de enero de 2013 (Resolución Rectoral N° 046-R-UNICA-2013) y recibió su autorización de funcionamiento el 4 de marzo de 2013 (Resolución Rectoral N° 273-R-UNICA-2013).</b>
-
-<p>Desde su fundación, la facultad se ha dedicado a la formación de Licenciados en Obstetricia con enfoque en salud pública, neonatología y salud reproductiva. Recientemente, tras el licenciamiento institucional de la UNICA por la SUNEDU en 2022, la facultad ha modernizado sus estándares de calidad educativa para seguir sirviendo a la comunidad iqueña.</p>
-                    </div>
-                </div>
-            `,
-         autoridades: `
-<div class="max-w-7xl mx-auto px-6">
-  <h2 class="text-3xl font-bold text-red-900 mb-12 text-center uppercase tracking-widest">
-    Autoridades de la Facultad de Obstetricia
+      `,
+historia: `
+<div class="mb-10">
+  <h2 class="text-sm uppercase tracking-[3px] text-red-800 font-semibold">
+    Facultad de Obstetricia
   </h2>
 
-  <div class="grid gap-10 sm:grid-cols-2 md:grid-cols-3">
+  <h2 class="text-4xl font-extrabold text-slate-900 flex items-center gap-3 mt-2">
+    <i data-lucide="landmark" class="text-pink-600 w-8 h-8"></i>
+    Nuestra Historia
+  </h2>
+
+  <div class="w-24 h-1 bg-red-800 mt-4 rounded-full"></div>
+</div>
+
+  <div class="relative overflow-hidden rounded-3xl mb-10 group">
+    <img src="imagenes/historia.jpg" 
+         class="w-full h-80 object-cover transition-transform duration-[4000ms] ease-out group-hover:scale-105" 
+         alt="Foto histórica">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+  </div>
+
+  <div class="max-w-4xl mx-auto space-y-6 text-slate-700 leading-relaxed text-[17px]">
+
+    <p class="first-letter:text-6xl first-letter:font-bold first-letter:text-red-800 first-letter:mr-4 first-letter:float-left">
+      La historia de esta facultad es un relato de perseverancia profesional, construido sobre el compromiso, la visión académica y la vocación de servicio hacia la comunidad.
+    </p>
+
+    <p>
+      Aunque la UNICA opera desde los años 60, la Facultad de Obstetricia es una institución administrativamente joven, nacida del esfuerzo colectivo de obstetrices que buscaron autonomía académica durante más de dos décadas.
+    </p>
+
+    <div class="border-l-4 border-red-800 pl-4 py-2 bg-red-50 rounded-r-xl">
+      <p class="font-semibold text-red-900 text-lg">
+        De la iniciativa a la realidad (1990 - 2013)
+      </p>
+    </div>
+
+    <p>
+      El camino inició formalmente en la década de 1990, cuando un grupo visionario de profesionales —entre ellas Marina Yataco Aguirre, Amparo Cahua Jayo, Virginia Cuba Calderón y Carmen Laos Anchante— impulsó el proyecto para crear una escuela profesional independiente.
+    </p>
+
+    <p>
+      Su objetivo fue jerarquizar la profesión y responder a la creciente demanda de salud materna y reproductiva en la región Ica.
+    </p>
+
+    <p>
+      A pesar de lograr avances administrativos mediante resoluciones vicerrectorales en 1990 y 1995, el proyecto enfrentó procesos burocráticos que retrasaron su consolidación definitiva.
+    </p>
+
+    <div class="bg-gradient-to-r from-red-900 to-rose-700 text-white p-6 rounded-2xl shadow-md">
+      <p class="font-semibold">
+        La facultad fue creada el 15 de enero de 2013 (Resolución Rectoral N° 046-R-UNICA-2013) y autorizada el 4 de marzo de 2013 (Resolución Rectoral N° 273-R-UNICA-2013).
+      </p>
+    </div>
+
+    <p>
+      Desde su fundación, la facultad se ha dedicado a la formación de Licenciados en Obstetricia con un enfoque integral en salud pública, neonatología y salud reproductiva.
+    </p>
+
+    <p>
+      Tras el licenciamiento institucional de la UNICA por la SUNEDU en 2022, la facultad fortaleció sus estándares académicos, modernizando sus procesos y consolidando su compromiso con la calidad educativa.
+    </p>
+
+  </div>
+</div>
+`,
+autoridades: `
+<div class="max-w-7xl mx-auto px-6">
+
+  <!-- Encabezado Modelo 3 Institucional -->
+  <div class="mb-16 text-center">
+    <h3 class="text-sm uppercase tracking-[3px] text-red-800 font-semibold">
+      Facultad de Obstetricia
+    </h3>
+
+    <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 flex items-center justify-center gap-3 mt-3">
+      <span class="bg-red-100 p-2 rounded-full shadow-sm">
+        <i data-lucide="users" class="text-red-800 w-8 h-8"></i>
+      </span>
+      Autoridades
+    </h2>
+
+    <div class="w-24 h-1 bg-red-800 mt-6 rounded-full mx-auto"></div>
+  </div>
+
+  <!-- Grid de Autoridades -->
+  <div class="grid gap-12 sm:grid-cols-2 md:grid-cols-3">
     ${
       [
         {
@@ -346,33 +748,33 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
         }
       ]
       .map(persona => `
-        <div class="group bg-white rounded-3xl overflow-hidden border border-pink-100 shadow-lg hover:shadow-2xl transition-all duration-300">
+        <div class="group bg-white rounded-3xl overflow-hidden border border-rose-100 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
 
           <!-- Imagen -->
           <div class="relative aspect-[3/4] overflow-hidden">
-            <img 
-              src="${persona.imagen}" 
+            <img
+              src="${persona.imagen}"
               alt="${persona.nombre}"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
             <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-red-900/90 to-transparent"></div>
           </div>
 
           <!-- Contenido -->
           <div class="p-8 text-center">
-            <h3 class="font-bold text-xl text-gray-900 mb-1">
+            <h3 class="font-bold text-xl text-slate-900 mb-2">
               ${persona.nombre}
             </h3>
 
-            <p class="text-pink-700 font-semibold text-sm uppercase tracking-wide mb-6">
+            <p class="text-red-800 font-semibold text-sm uppercase tracking-wide mb-6">
               ${persona.cargo}
             </p>
 
-            <a 
+            <a
               href="${persona.perfil}"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-6 py-2.5 bg-red-900 text-white rounded-full text-sm font-semibold hover:bg-red-800 transition shadow-md"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-900 to-rose-700 text-white rounded-full text-sm font-semibold hover:scale-105 transition-all duration-300 shadow-lg active:scale-95"
             >
               <i data-lucide="award" class="w-4 h-4"></i>
               Ver perfil CTI Vitae
@@ -383,14 +785,26 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
       `).join("")
     }
   </div>
+
 </div>
 `,
 
-            docentes: `
+      docentes: `
 <div>
-  <h2 class="text-3xl font-bold text-red-900 mb-8 border-l-8 border-red-800 pl-4">
-    Plana Docente
-  </h2>
+  <div class="mb-14 text-center">
+    <h3 class="text-sm uppercase tracking-[3px] text-red-800 font-semibold">
+      Facultad de Obstetricia
+    </h3>
+
+    <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 flex items-center justify-center gap-3 mt-3">
+      <span class="bg-red-100 p-2 rounded-full shadow-sm">
+        <i data-lucide="graduation-cap" class="text-red-800 w-8 h-8"></i>
+      </span>
+      Plana Docente
+    </h2>
+
+    <div class="w-24 h-1 bg-red-800 mt-6 rounded-full mx-auto"></div>
+  </div>
 
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
     ${
@@ -454,25 +868,29 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
           categoria: "Ordinario Auxiliar",
           imagen: "imagenes/hernandezlopezz.jpg",
           perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=148173"
-        },{
+        },
+        {
           nombre: "Mg. LLANTO CANCHOS, JOSE ANGEL",
           categoria: "Ordinario Auxiliar",
           imagen: "imagenes/llantocanchos.jpg",
           perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=87849"
-        },{
+        },
+        {
           nombre: "Mg. PALACIOS FUENTES, NIDIA MAGALI",
           categoria: "Ordinario Auxiliar",
           imagen: "imagenes/palaciosfuentes.jpg",
           perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=273375"
-        },{
+        },
+        {
           nombre: "Mg. PUERTAS ANICAMA, VANESSA FIORELLA",
           categoria: "Ordinario Auxiliar",
-          imagen: "imagenes/palaciosfuentes.jpg",
+          imagen: "imagenes/puertasanicama.jpg",
           perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=238403"
-        },{
+        },
+        {
           nombre: "Dr. ZEGARRA ZEBALLOS, MARIELA ROSARIO",
           categoria: "Ordinario Auxiliar",
-          imagen: "imagenes/palaciosfuentes.jpg",
+          imagen: "imagenes/zegarrazeballos.jpg",
           perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=65725"
         },
         {
@@ -480,7 +898,8 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
           categoria: "Ordinario Asociado",
           imagen: "imagenes/ramoswilson.jpg",
           perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=238808"
-        },{
+        },
+        {
           nombre: "Mg. JUNES FLORES, FRANKLIN EDWARD",
           categoria: "Ordinario Asociado",
           imagen: "imagenes/junesflores.jpg",
@@ -488,11 +907,11 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
         },
       ]
       .map(docente => `
-        <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-50 flex items-center space-x-4 hover:border-pink-200 transition-colors">
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-rose-100 flex items-center space-x-4 hover:border-rose-200 hover:shadow-md transition">
 
           <div class="relative">
-            <img 
-              src="${docente.imagen}" 
+            <img
+              src="${docente.imagen}"
               alt="${docente.nombre}"
               class="w-20 h-20 rounded-2xl object-cover"
             />
@@ -500,16 +919,16 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
           </div>
 
           <div class="flex-1">
-            <h3 class="font-bold text-gray-900">${docente.nombre}</h3>
-            <p class="text-xs text-pink-600 font-semibold mb-2">
+            <h3 class="font-bold text-slate-900">${docente.nombre}</h3>
+            <p class="text-xs text-pink-700 font-semibold mb-2">
               ${docente.categoria}
             </p>
 
-            <a 
-              href="${docente.perfil}" 
+            <a
+              href="${docente.perfil}"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-block text-[11px] bg-pink-100 text-red-900 px-3 py-1 rounded-full font-bold hover:bg-red-800 hover:text-white transition-all"
+              class="inline-block text-[11px] bg-rose-100 text-red-900 px-3 py-1 rounded-full font-extrabold hover:bg-red-900 hover:text-white transition"
             >
               VER PERFIL
             </a>
@@ -518,113 +937,125 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
       `).join("")}
   </div>
 </div>
-`,
+      `,
 
-            malla: `
+      /* ====== MALLA (MISMA INFO) ====== */
+      malla: `
 <div>
-  <h2 class="text-3xl font-bold text-red-900 mb-8">Plan de Estudios 2024</h2>
+  <div class="mb-14 text-center">
+    <h3 class="text-sm uppercase tracking-[3px] text-red-800 font-semibold">
+      Plan Académico
+    </h3>
+
+    <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 flex items-center justify-center gap-3 mt-3">
+      <span class="bg-red-100 p-2 rounded-full shadow-sm">
+        <i data-lucide="book-open" class="text-red-800 w-8 h-8"></i>
+      </span>
+      Plan de Estudios 2024
+    </h2>
+
+    <div class="w-24 h-1 bg-red-800 mt-6 rounded-full mx-auto"></div>
+  </div>
 
   <div class="grid lg:grid-cols-2 gap-8">
     ${
       [
         {
-    ciclo: 1,
-    cursos: [
-      { codigo: "1P38011", nombre: "Estrategias del Aprendizaje", creditos: "4.0", desc: "Desarrollo de habilidades cognitivas y métodos de estudio para la formación académica superior." },
-      { codigo: "1P38012", nombre: "Matemática", creditos: "4.0", desc: "Fundamentos lógicos y cálculo aplicado al análisis de datos en salud materno-perinatal." },
-      { codigo: "1P38013", nombre: "Defensa y Realidad Nacional", creditos: "3.0", desc: "Estudio de la soberanía nacional, contexto geopolítico y responsabilidad ciudadana." },
-      { codigo: "1P38014", nombre: "Biología General", creditos: "4.0", desc: "Bases moleculares y celulares de la vida, esenciales para la comprensión de la anatomía." },
-      { codigo: "1P38015", nombre: "Lenguaje", creditos: "3.0", desc: "Comunicación asertiva, redacción científica y expresión oral profesional." }
-    ]
-        },
-        {
-    ciclo: 2,
-    cursos: [
-      { codigo: "1P38031", nombre: "Anatomía General", creditos: "5.0", desc: "Descripción macroscópica detallada de los sistemas y aparatos del cuerpo humano." },
-      { codigo: "1P38032", nombre: "Histología y Embriología General", creditos: "4.0", desc: "Estudio microscópico de tejidos y las etapas iniciales del desarrollo prenatal." },
-      { codigo: "1P38033", nombre: "Física Médica", creditos: "3.0", desc: "Leyes físicas aplicadas al funcionamiento del organismo y equipos médicos." },
-      { codigo: "1P38034", nombre: "Ecología y Desarrollo Sostenible", creditos: "3.0", desc: "Relación entre ecosistemas y salud humana bajo un enfoque sostenible." },
-      { codigo: "1P38035", nombre: "Metodología de la Investigación Científica", creditos: "3.0", desc: "Bases para diseñar y ejecutar proyectos de investigación en salud." }
+          ciclo: 1,
+          cursos: [
+            { codigo: "1P38011", nombre: "Estrategias del Aprendizaje", creditos: "4.0", desc: "Desarrollo de habilidades cognitivas y métodos de estudio para la formación académica superior." },
+            { codigo: "1P38012", nombre: "Matemática", creditos: "4.0", desc: "Fundamentos lógicos y cálculo aplicado al análisis de datos en salud materno-perinatal." },
+            { codigo: "1P38013", nombre: "Defensa y Realidad Nacional", creditos: "3.0", desc: "Estudio de la soberanía nacional, contexto geopolítico y responsabilidad ciudadana." },
+            { codigo: "1P38014", nombre: "Biología General", creditos: "4.0", desc: "Bases moleculares y celulares de la vida, esenciales para la comprensión de la anatomía." },
+            { codigo: "1P38015", nombre: "Lenguaje", creditos: "3.0", desc: "Comunicación asertiva, redacción científica y expresión oral profesional." }
           ]
         },
         {
-    ciclo: 3,
-    cursos: [
-      { codigo: "1P38031", nombre: "Anatomía General", creditos: "5.0", desc: "Descripción macroscópica detallada de los sistemas y aparatos del cuerpo humano." },
-      { codigo: "1P38032", nombre: "Histología y Embriología General", creditos: "4.0", desc: "Estudio microscópico de tejidos y las etapas iniciales del desarrollo prenatal." },
-      { codigo: "1P38033", nombre: "Física Médica", creditos: "3.0", desc: "Leyes físicas aplicadas al funcionamiento del organismo y equipos médicos." },
-      { codigo: "1P38034", nombre: "Ecología y Desarrollo Sostenible", creditos: "3.0", desc: "Relación entre ecosistemas y salud humana bajo un enfoque sostenible." },
-      { codigo: "1P38035", nombre: "Metodología de la Investigación Científica", creditos: "3.0", desc: "Bases para diseñar y ejecutar proyectos de investigación en salud." }
-    ]
-  },
-  {
-    ciclo: 4,
-    cursos: [
-      { codigo: "1P38041", nombre: "Anatomía Obstétrica", creditos: "4.0", desc: "Estudio específico de la pelvis, canal del parto y estructuras asociadas." },
-      { codigo: "1P38042", nombre: "Fisiología General", creditos: "4.0", desc: "Funcionamiento integral del organismo humano y sus sistemas." },
-      { codigo: "1P38043", nombre: "Microbiología y Parasitología", creditos: "4.0", desc: "Agentes infecciosos y su relación con la salud reproductiva." },
-      { codigo: "1P38044", nombre: "Bioquímica", creditos: "4.0", desc: "Procesos metabólicos celulares y moleculares fundamentales." },
-      { codigo: "1P38045", nombre: "Introducción a la Obstetricia", creditos: "3.0", desc: "Rol profesional, ética y campo laboral del obstetra." }
-    ]
-  },
-  {
-    ciclo: 5,
-    cursos: [
-      { codigo: "1P38051", nombre: "Fisiología Obstétrica", creditos: "4.0", desc: "Cambios fisiológicos durante el embarazo, parto y puerperio." },
-      { codigo: "1P38052", nombre: "Obstetricia I", creditos: "5.0", desc: "Semiología obstétrica y control prenatal del embarazo normal." },
-      { codigo: "1P38053", nombre: "Farmacología General", creditos: "4.0", desc: "Principios del uso terapéutico de medicamentos." },
-      { codigo: "1P38054", nombre: "Nutrición y Salud", creditos: "3.0", desc: "Requerimientos nutricionales de la gestante, madre y recién nacido." },
-      { codigo: "1P38055", nombre: "Ética y Deontología Profesional", creditos: "2.0", desc: "Principios éticos y normas legales del ejercicio profesional." }
-    ]
-  },
-  {
-    ciclo: 6,
-    cursos: [
-      { codigo: "1P38061", nombre: "Obstetricia II", creditos: "5.0", desc: "Atención del parto y cuidado del puerperio normal." },
-      { codigo: "1P38062", nombre: "Ginecología I", creditos: "4.0", desc: "Salud ginecológica y prevención de enfermedades." },
-      { codigo: "1P38063", nombre: "Farmacología Obstétrica", creditos: "3.0", desc: "Uso seguro de medicamentos durante la gestación." },
-      { codigo: "1P38064", nombre: "Genética Humana", creditos: "3.0", desc: "Herencia genética y alteraciones cromosómicas." },
-      { codigo: "1P38065", nombre: "Epidemiología", creditos: "3.0", desc: "Distribución y control de enfermedades en poblaciones." }
-    ]
-  },
-  {
-    ciclo: 7,
-    cursos: [
-      { codigo: "1P38071", nombre: "Obstetricia III", creditos: "5.0", desc: "Manejo de embarazos de alto riesgo y emergencias obstétricas." },
-      { codigo: "1P38072", nombre: "Salud Reproductiva", creditos: "4.0", desc: "Planificación familiar, ITS y derechos reproductivos." },
-      { codigo: "1P38073", nombre: "Ecografía Obstétrica", creditos: "3.0", desc: "Evaluación ecográfica del desarrollo fetal." },
-      { codigo: "1P38074", nombre: "Patología General", creditos: "3.0", desc: "Cambios estructurales y funcionales en la enfermedad." },
-      { codigo: "1P38075", nombre: "Psicoprofilaxis Obstétrica", creditos: "3.0", desc: "Preparación integral de la gestante para el parto." }
-    ]
-  },
-  {
-    ciclo: 8,
-    cursos: [
-      { codigo: "1P38081", nombre: "Obstetricia IV", creditos: "5.0", desc: "Procedimientos quirúrgicos y manejo avanzado obstétrico." },
-      { codigo: "1P38082", nombre: "Ginecología II", creditos: "4.0", desc: "Patologías ginecológicas complejas y climaterio." },
-      { codigo: "1P38083", nombre: "Medicina Legal", creditos: "3.0", desc: "Aspectos legales y peritaje en salud." },
-      { codigo: "1P38084", nombre: "Administración en Salud", creditos: "3.0", desc: "Gestión de servicios y liderazgo en salud." },
-      { codigo: "1P38085", nombre: "Neonatología", creditos: "3.0", desc: "Atención integral del recién nacido." }
-    ]
-  },
-  {
-    ciclo: 9,
-    cursos: [
-      { codigo: "1P38091", nombre: "Internado Hospitalario I", creditos: "12.0", desc: "Práctica preprofesional intensiva en áreas clínicas." },
-      { codigo: "1P38092", nombre: "Seminario de Tesis I", creditos: "4.0", desc: "Formulación y sustentación del proyecto de investigación." }
-    ]
-  },
-  {
-    ciclo: 10,
-    cursos: [
-      { codigo: "1P38101", nombre: "Internado Hospitalario II", creditos: "12.0", desc: "Consolidación de competencias clínicas profesionales." },
-      { codigo: "1P38102", nombre: "Seminario de Tesis II", creditos: "4.0", desc: "Ejecución y defensa final del trabajo de investigación." }
-    ]
-
+          ciclo: 2,
+          cursos: [
+            { codigo: "1P38031", nombre: "Anatomía General", creditos: "5.0", desc: "Descripción macroscópica detallada de los sistemas y aparatos del cuerpo humano." },
+            { codigo: "1P38032", nombre: "Histología y Embriología General", creditos: "4.0", desc: "Estudio microscópico de tejidos y las etapas iniciales del desarrollo prenatal." },
+            { codigo: "1P38033", nombre: "Física Médica", creditos: "3.0", desc: "Leyes físicas aplicadas al funcionamiento del organismo y equipos médicos." },
+            { codigo: "1P38034", nombre: "Ecología y Desarrollo Sostenible", creditos: "3.0", desc: "Relación entre ecosistemas y salud humana bajo un enfoque sostenible." },
+            { codigo: "1P38035", nombre: "Metodología de la Investigación Científica", creditos: "3.0", desc: "Bases para diseñar y ejecutar proyectos de investigación en salud." }
+          ]
+        },
+        {
+          ciclo: 3,
+          cursos: [
+            { codigo: "1P38031", nombre: "Anatomía General", creditos: "5.0", desc: "Descripción macroscópica detallada de los sistemas y aparatos del cuerpo humano." },
+            { codigo: "1P38032", nombre: "Histología y Embriología General", creditos: "4.0", desc: "Estudio microscópico de tejidos y las etapas iniciales del desarrollo prenatal." },
+            { codigo: "1P38033", nombre: "Física Médica", creditos: "3.0", desc: "Leyes físicas aplicadas al funcionamiento del organismo y equipos médicos." },
+            { codigo: "1P38034", nombre: "Ecología y Desarrollo Sostenible", creditos: "3.0", desc: "Relación entre ecosistemas y salud humana bajo un enfoque sostenible." },
+            { codigo: "1P38035", nombre: "Metodología de la Investigación Científica", creditos: "3.0", desc: "Bases para diseñar y ejecutar proyectos de investigación en salud." }
+          ]
+        },
+        {
+          ciclo: 4,
+          cursos: [
+            { codigo: "1P38041", nombre: "Anatomía Obstétrica", creditos: "4.0", desc: "Estudio específico de la pelvis, canal del parto y estructuras asociadas." },
+            { codigo: "1P38042", nombre: "Fisiología General", creditos: "4.0", desc: "Funcionamiento integral del organismo humano y sus sistemas." },
+            { codigo: "1P38043", nombre: "Microbiología y Parasitología", creditos: "4.0", desc: "Agentes infecciosos y su relación con la salud reproductiva." },
+            { codigo: "1P38044", nombre: "Bioquímica", creditos: "4.0", desc: "Procesos metabólicos celulares y moleculares fundamentales." },
+            { codigo: "1P38045", nombre: "Introducción a la Obstetricia", creditos: "3.0", desc: "Rol profesional, ética y campo laboral del obstetra." }
+          ]
+        },
+        {
+          ciclo: 5,
+          cursos: [
+            { codigo: "1P38051", nombre: "Fisiología Obstétrica", creditos: "4.0", desc: "Cambios fisiológicos durante el embarazo, parto y puerperio." },
+            { codigo: "1P38052", nombre: "Obstetricia I", creditos: "5.0", desc: "Semiología obstétrica y control prenatal del embarazo normal." },
+            { codigo: "1P38053", nombre: "Farmacología General", creditos: "4.0", desc: "Principios del uso terapéutico de medicamentos." },
+            { codigo: "1P38054", nombre: "Nutrición y Salud", creditos: "3.0", desc: "Requerimientos nutricionales de la gestante, madre y recién nacido." }
+          ]
+        },
+        {
+          ciclo: 6,
+          cursos: [
+            { codigo: "1P38061", nombre: "Obstetricia II", creditos: "5.0", desc: "Atención del embarazo de alto riesgo y complicaciones obstétricas." },
+            { codigo: "1P38062", nombre: "Ginecología I", creditos: "4.0", desc: "Bases clínicas y atención ginecológica integral." },
+            { codigo: "1P38063", nombre: "Epidemiología", creditos: "3.0", desc: "Análisis de enfermedades y eventos en salud pública." },
+            { codigo: "1P38064", nombre: "Salud Pública", creditos: "3.0", desc: "Organización del sistema sanitario y prevención comunitaria." },
+            { codigo: "1P38065", nombre: "Psicología", creditos: "3.0", desc: "Procesos psicológicos y acompañamiento en salud reproductiva." }
+          ]
+        },
+        {
+          ciclo: 7,
+          cursos: [
+            { codigo: "1P38071", nombre: "Obstetricia III", creditos: "5.0", desc: "Atención integral del parto y puerperio con enfoque clínico." },
+            { codigo: "1P38072", nombre: "Salud Sexual y Reproductiva", creditos: "4.0", desc: "Promoción, prevención y planificación familiar." },
+            { codigo: "1P38073", nombre: "Bioética", creditos: "3.0", desc: "Dilemas éticos en la práctica clínica y la investigación." },
+            { codigo: "1P38074", nombre: "Educación para la Salud", creditos: "3.0", desc: "Estrategias educativas para la promoción de estilos de vida saludables." },
+            { codigo: "1P38075", nombre: "Preparación Psicoprofiláctica", creditos: "3.0", desc: "Técnicas de preparación física y emocional para el parto." }
+          ]
+        },
+        {
+          ciclo: 8,
+          cursos: [
+            { codigo: "1P38081", nombre: "Obstetricia IV", creditos: "5.0", desc: "Procedimientos quirúrgicos y manejo avanzado obstétrico." },
+            { codigo: "1P38082", nombre: "Ginecología II", creditos: "4.0", desc: "Patologías ginecológicas complejas y climaterio." },
+            { codigo: "1P38083", nombre: "Medicina Legal", creditos: "3.0", desc: "Aspectos legales y peritaje en salud." },
+            { codigo: "1P38084", nombre: "Administración en Salud", creditos: "3.0", desc: "Gestión de servicios y liderazgo en salud." },
+            { codigo: "1P38085", nombre: "Neonatología", creditos: "3.0", desc: "Atención integral del recién nacido." }
+          ]
+        },
+        {
+          ciclo: 9,
+          cursos: [
+            { codigo: "1P38091", nombre: "Internado Hospitalario I", creditos: "12.0", desc: "Práctica preprofesional intensiva en áreas clínicas." },
+            { codigo: "1P38092", nombre: "Seminario de Tesis I", creditos: "4.0", desc: "Formulación y sustentación del proyecto de investigación." }
+          ]
+        },
+        {
+          ciclo: 10,
+          cursos: [
+            { codigo: "1P38101", nombre: "Internado Hospitalario II", creditos: "12.0", desc: "Consolidación de competencias clínicas profesionales." },
+            { codigo: "1P38102", nombre: "Seminario de Tesis II", creditos: "4.0", desc: "Ejecución y defensa final del trabajo de investigación." }
+          ]
         }
       ]
       .map(ciclo => `
-        <div class="bg-white rounded-2xl shadow-sm border border-pink-100">
+        <div class="bg-white rounded-2xl shadow-sm border border-rose-100 hover:shadow-md transition">
 
           <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
             <h3 class="font-bold text-lg flex items-center">
@@ -633,24 +1064,24 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
             </h3>
           </div>
 
-          <div class="p-2 divide-y divide-pink-50">
+          <div class="p-2 divide-y divide-rose-100/60">
             ${
               ciclo.cursos.map(curso => `
-                <div class="p-4 hover:bg-pink-50/50 rounded-xl transition-colors">
-                  <div class="flex justify-between items-center mb-2">
-                    <span class="text-xs font-bold text-red-800 bg-red-50 px-2 py-1 rounded">
+                <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+                  <div class="flex justify-between items-center mb-2 gap-2">
+                    <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">
                       ${curso.codigo}
                     </span>
-                    <span class="text-xs font-bold text-pink-600">
+                    <span class="text-xs font-extrabold text-pink-700">
                       ${curso.creditos} CRÉDITOS
                     </span>
                   </div>
 
-                  <h4 class="font-bold text-gray-800 mb-1">
+                  <h4 class="font-bold text-slate-800 mb-1">
                     ${curso.nombre}
                   </h4>
 
-                  <p class="text-xs text-gray-500 leading-relaxed">
+                  <p class="text-xs text-slate-600 leading-relaxed">
                     ${curso.desc}
                   </p>
                 </div>
@@ -660,11 +1091,24 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
       `).join("")}
   </div>
 </div>
-`,
+      `,
 
-            eventos: `
+      eventos: `
 <div>
-  <h2 class="text-3xl font-bold text-red-900 mb-8">Eventos e Infraestructura de Nuestra Facultad</h2>
+  <div class="mb-14 text-center">
+    <h3 class="text-sm uppercase tracking-[3px] text-red-800 font-semibold">
+      Vida Institucional
+    </h3>
+
+    <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 flex items-center justify-center gap-3 mt-3">
+      <span class="bg-red-100 p-2 rounded-full shadow-sm">
+        <i data-lucide="image" class="text-red-800 w-8 h-8"></i>
+      </span>
+      Eventos e Infraestructura
+    </h2>
+
+    <div class="w-24 h-1 bg-red-800 mt-6 rounded-full mx-auto"></div>
+  </div>
 
   <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
     ${
@@ -672,12 +1116,12 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
         {
           titulo: "Facultad de Obstetricia",
           descripcion: "Espacio equipado para prácticas clínicas y simulación profesional.",
-          imagen: "imagenes/banner.jpg"
+          imagen: "imagenes/infraestructura.jpeg"
         },
         {
           titulo: "Reina de Obstetricia 2025",
           descripcion: "Fernanda Lucia Paredes Ramos, nos representa con orgullo.",
-          imagen: "imagenes/infraestructura.jpg"
+          imagen: "imagenes/reina.jpg"
         },
         {
           titulo: "Participacion en Congresos",
@@ -705,22 +1149,22 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
           imagen: "imagenes/mandiles.jpg"
         }
       ].map(item => `
-        <div class="break-inside-avoid bg-white p-4 rounded-2xl shadow-sm border border-pink-100 group">
+        <div class="break-inside-avoid bg-white p-4 rounded-2xl shadow-sm border border-rose-100 group hover:shadow-md transition">
 
           <div class="relative overflow-hidden rounded-xl mb-4">
-            <img 
-              src="${item.imagen}" 
+            <img
+              src="${item.imagen}"
               alt="${item.titulo}"
               class="w-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
             <div class="absolute inset-0 bg-pink-600/10 group-hover:bg-transparent transition-colors"></div>
           </div>
 
-          <h3 class="font-bold text-red-900 mb-1 text-sm">
+          <h3 class="font-extrabold text-red-900 mb-1 text-sm">
             ${item.titulo}
           </h3>
 
-          <p class="text-xs text-gray-600">
+          <p class="text-xs text-slate-600">
             ${item.descripcion}
           </p>
 
@@ -728,125 +1172,158 @@ A pesar de lograr avances administrativos mediante resoluciones vicerrectorales 
       `).join("")}
   </div>
 </div>
-`,
+      `,
 
-            contacto: `
-                <div class="bg-white rounded-3xl shadow-xl border border-pink-100 overflow-hidden flex flex-col lg:flex-row">
-                    <div class="lg:w-3/5 p-10">
-                        <h2 class="text-3xl font-bold text-red-900 mb-2">Contacta con nosotros</h2>
-                        <p class="text-gray-500 mb-8 italic">Estamos para resolver todas tus dudas académicas.</p>
-                        <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="md:col-span-2">
-                                <label class="block text-xs font-bold text-red-900 uppercase mb-2">Nombre Completo</label>
-                                <input type="text" class="w-full px-5 py-3 bg-pink-50 border border-transparent rounded-xl focus:border-red-800 focus:bg-white outline-none transition-all">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-red-900 uppercase mb-2">Correo Institucional</label>
-                                <input type="email" class="w-full px-5 py-3 bg-pink-50 border border-transparent rounded-xl focus:border-red-800 focus:bg-white outline-none transition-all">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-red-900 uppercase mb-2">Asunto</label>
-                                <select class="w-full px-5 py-3 bg-pink-50 border border-transparent rounded-xl focus:border-red-800 focus:bg-white outline-none transition-all">
-                                    <option>Trámites Académicos</option>
-                                    <option>Admisión</option>
-                                    <option>Otros</option>
-                                </select>
-                            </div>
-                            <div class="md:col-span-2">
-                                <label class="block text-xs font-bold text-red-900 uppercase mb-2">Tu Mensaje</label>
-                                <textarea rows="4" class="w-full px-5 py-3 bg-pink-50 border border-transparent rounded-xl focus:border-red-800 focus:bg-white outline-none transition-all"></textarea>
-                            </div>
-                            <div class="md:col-span-2">
-                                <button type="button" class="w-full py-4 bg-red-900 text-white font-bold rounded-xl shadow-lg hover:bg-red-800 transform hover:-translate-y-1 transition-all">
-                                    ENVIAR SOLICITUD
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="lg:w-2/5 bg-red-950 p-10 text-white flex flex-col justify-center relative overflow-hidden">
-                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-pink-500/20 rounded-full blur-3xl"></div>
-                        <h3 class="text-2xl font-bold mb-8">Información de Sede</h3>
-                        <div class="space-y-8 relative z-10">
-                          <a
-                          href="https://maps.app.goo.gl/cQBvFK1W9jbVw9ay8"
-  target="_blank"
-  class="flex items-start hover:opacity-90 transition"
->
-    <div class="bg-red-800 p-3 rounded-xl mr-4">
-        <i data-lucide="map-pin" class="w-6 h-6 text-pink-300"></i>
-    </div>
+      contacto: `
+<div class="bg-white rounded-3xl shadow-xl border border-rose-100 overflow-hidden flex flex-col lg:flex-row">
 
-    <p class="text-sm text-white">
-        Ciudad Universitaria S/N, Ica, Perú<br>
-        <span class="opacity-60">Pabellón Central de Obstetricia</span>
-    </p>
-</a>
-<a href="mailto:obstetricia@unica.edu.pe" 
-   class="flex items-center hover:opacity-90 transition">
-    <div class="bg-red-800 p-3 rounded-xl mr-4">
-        <i data-lucide="mail" class="w-6 h-6 text-pink-300"></i>
-    </div>
-    <p class="text-sm text-white">obstetricia@unica.edu.pe</p>
-</a>
-<a 
-  href="https://www.facebook.com/profile.php?id=61567253438241"
-  target="_blank"
-  class="flex items-center hover:opacity-90 transition"
->
-    <div class="bg-red-800 p-3 rounded-xl mr-4">
-        <i data-lucide="facebook" class="w-6 h-6 text-pink-300"></i>
-    </div>
-    <p class="text-sm text-white">Facultad de Obstetricia - UNSLG</p>
-</a>
-                        </div>
-                    </div>      
-                </div>
-            `,
-            // Vistas adicionales
-consejo: `
-<div class="max-w-7xl mx-auto px-4">
+  <div class="lg:w-3/5 p-10">
+    <div class="mb-10">
+      <h3 class="text-sm uppercase tracking-[3px] text-red-800 font-semibold">
+        Facultad de Obstetricia
+      </h3>
 
-  <!-- TÍTULO -->
-  <div class="text-center mb-12">
-    <h2 class="text-4xl font-bold text-red-900">Consejo de Facultad</h2>
-    <p class="text-gray-600 mt-2">Facultad de Obstetricia – UNICA</p>
+      <h2 class="text-4xl font-extrabold text-slate-900 flex items-center gap-3 mt-3">
+        <span class="bg-red-100 p-2 rounded-full shadow-sm">
+          <i data-lucide="mail" class="text-red-800 w-7 h-7"></i>
+        </span>
+        Contacto Institucional
+      </h2>
+
+      <div class="w-24 h-1 bg-red-800 mt-6 rounded-full"></div>
+    </div>
+    <p class="text-slate-500 mb-8 italic">Estamos para resolver todas tus dudas académicas.</p>
+
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-6" onsubmit="event.preventDefault();">
+      <div class="md:col-span-2">
+        <label class="block text-xs font-extrabold text-red-900 uppercase mb-2">Nombre Completo</label>
+        <input type="text"
+          class="w-full px-5 py-3 bg-rose-50 border border-transparent rounded-xl focus:border-red-800 focus:bg-white outline-none transition-all">
+      </div>
+
+      <div>
+        <label class="block text-xs font-extrabold text-red-900 uppercase mb-2">Correo Institucional</label>
+        <input type="email"
+          class="w-full px-5 py-3 bg-rose-50 border border-transparent rounded-xl focus:border-red-800 focus:bg-white outline-none transition-all">
+      </div>
+
+      <div>
+        <label class="block text-xs font-extrabold text-red-900 uppercase mb-2">Asunto</label>
+        <select
+          class="w-full px-5 py-3 bg-rose-50 border border-transparent rounded-xl focus:border-red-800 focus:bg-white outline-none transition-all">
+          <option>Trámites Académicos</option>
+          <option>Admisión</option>
+          <option>Otros</option>
+        </select>
+      </div>
+
+      <div class="md:col-span-2">
+        <label class="block text-xs font-extrabold text-red-900 uppercase mb-2">Tu Mensaje</label>
+        <textarea rows="4"
+          class="w-full px-5 py-3 bg-rose-50 border border-transparent rounded-xl focus:border-red-800 focus:bg-white outline-none transition-all"></textarea>
+      </div>
+
+      <div class="md:col-span-2">
+        <button type="button"
+          class="w-full py-4 bg-red-900 text-white font-extrabold rounded-xl shadow-lg hover:bg-red-800 transform hover:-translate-y-0.5 transition-all active:scale-[0.98]">
+          ENVIAR SOLICITUD
+        </button>
+      </div>
+    </form>
   </div>
 
-  <!-- GRID PRINCIPAL -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <div class="lg:w-2/5 bg-red-950 p-10 text-white flex flex-col justify-center relative overflow-hidden">
+    <div class="absolute -top-10 -right-10 w-40 h-40 bg-pink-500/20 rounded-full blur-3xl"></div>
 
-    <!-- PRESIDENCIA -->
-    <div class="bg-white rounded-2xl shadow-md border border-pink-200 p-6 text-center">
+    <h3 class="text-2xl font-extrabold mb-8">Información de Sede</h3>
+
+    <div class="space-y-8 relative z-10">
+      <a
+        href="https://maps.app.goo.gl/cQBvFK1W9jbVw9ay8"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-start hover:opacity-90 transition"
+      >
+        <div class="bg-red-800 p-3 rounded-xl mr-4">
+          <i data-lucide="map-pin" class="w-6 h-6 text-pink-300"></i>
+        </div>
+
+        <p class="text-sm text-white">
+          Ciudad Universitaria S/N, Ica, Perú<br>
+          <span class="opacity-70">Pabellón Central de Obstetricia</span>
+        </p>
+      </a>
+
+      <a href="mailto:obstetricia@unica.edu.pe" class="flex items-center hover:opacity-90 transition">
+        <div class="bg-red-800 p-3 rounded-xl mr-4">
+          <i data-lucide="mail" class="w-6 h-6 text-pink-300"></i>
+        </div>
+        <p class="text-sm text-white">obstetricia@unica.edu.pe</p>
+      </a>
+
+      <a
+        href="https://www.facebook.com/profile.php?id=61567253438241"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center hover:opacity-90 transition"
+      >
+        <div class="bg-red-800 p-3 rounded-xl mr-4">
+          <i data-lucide="facebook" class="w-6 h-6 text-pink-300"></i>
+        </div>
+        <p class="text-sm text-white">Facultad de Obstetricia - UNSLG</p>
+      </a>
+    </div>
+  </div>
+</div>
+      `,
+
+      consejo: `
+<div class="max-w-7xl mx-auto px-4">
+
+  <div class="mb-14 text-center">
+    <h3 class="text-sm uppercase tracking-[3px] text-red-800 font-semibold">
+      Facultad de Obstetricia
+    </h3>
+
+    <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 flex items-center justify-center gap-3 mt-3">
+      <span class="bg-red-100 p-2 rounded-full shadow-sm">
+        <i data-lucide="shield-check" class="text-red-800 w-8 h-8"></i>
+      </span>
+      Consejo de Facultad
+    </h2>
+
+    <div class="w-24 h-1 bg-red-800 mt-6 rounded-full mx-auto"></div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="bg-white rounded-2xl shadow-md border border-rose-200 p-6 text-center hover:shadow-lg transition">
       <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-red-100">
-        <svg class="w-8 h-8 text-red-800" fill="none" stroke="currentColor" stroke-width="1.5"
-             viewBox="0 0 24 24">
+        <svg class="w-8 h-8 text-red-800" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0" />
         </svg>
       </div>
-      <h3 class="font-bold text-red-900 mb-2">Presidencia</h3>
+      <h3 class="font-extrabold text-red-900 mb-2">Presidencia</h3>
       <p class="font-semibold">Dra. Rosa Elvira Ruiz Reyes</p>
-      <p class="text-sm text-gray-600">Decana</p>
+      <p class="text-sm text-slate-600">Decana</p>
     </div>
 
-    <!-- DOCENTES -->
-    <div class="bg-white rounded-2xl shadow-md border border-pink-200 p-6">
+    <div class="bg-white rounded-2xl shadow-md border border-rose-200 p-6 hover:shadow-lg transition">
       <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-red-100">
-        <svg class="w-8 h-8 text-red-800" fill="none" stroke="currentColor" stroke-width="1.5"
-             viewBox="0 0 24 24">
+        <svg class="w-8 h-8 text-red-800" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M12 14l9-5-9-5-9 5 9 5zM12 14l6.16-3.422A12.083 12.083 0 0112 20.25c-2.673 0-5.182-.87-7.16-2.328L12 14z" />
         </svg>
       </div>
 
-      <h3 class="font-bold text-red-900 mb-4 text-center">Representantes Docentes</h3>
+      <h3 class="font-extrabold text-red-900 mb-4 text-center">Representantes Docentes</h3>
 
-      <button onclick="document.getElementById('docentes').classList.toggle('hidden')"
-        class="w-full bg-red-800 hover:bg-red-900 text-white text-sm font-bold py-2 rounded-xl">
+      <button onclick="document.getElementById('docentes-consejo').classList.toggle('hidden')"
+        class="w-full bg-red-800 hover:bg-red-900 text-white text-sm font-extrabold py-2 rounded-xl transition active:scale-[0.98]">
         Ver representantes
       </button>
 
-      <div id="docentes" class="hidden mt-4 space-y-3 text-sm">
+      <div id="docentes-consejo" class="hidden mt-4 space-y-3 text-sm">
         ${[
           {
             nombre: "Carmen Rosa Laos de Aguilar",
@@ -885,11 +1362,11 @@ consejo: `
             link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-1593-2024.pdf"
           }
         ].map(d => `
-          <div class="border rounded-xl p-3">
+          <div class="border border-rose-100 rounded-xl p-3 hover:bg-rose-50/60 transition">
             <p class="font-semibold">${d.nombre}</p>
-            <p class="text-gray-600">${d.categoria}</p>
-            <a href="${d.link}" target="_blank"
-              class="inline-block mt-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1 rounded-lg">
+            <p class="text-slate-600">${d.categoria}</p>
+            <a href="${d.link}" target="_blank" rel="noopener noreferrer"
+              class="inline-block mt-2 bg-red-700 hover:bg-red-800 text-white text-xs font-extrabold px-3 py-1 rounded-lg transition active:scale-[0.98]">
               Descargar ${d.resolucion}
             </a>
           </div>
@@ -897,8 +1374,7 @@ consejo: `
       </div>
     </div>
 
-    <!-- ESTUDIANTES -->
-    <div class="bg-white rounded-2xl shadow-md border border-pink-200 p-6">
+    <div class="bg-white rounded-2xl shadow-md border border-rose-200 p-6 hover:shadow-lg transition">
       <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-red-100">
         <svg class="w-8 h-8 text-red-800" viewBox="0 0 24 24" fill="currentColor">
           <path
@@ -915,14 +1391,14 @@ consejo: `
         </svg>
       </div>
 
-      <h3 class="font-bold text-red-900 mb-4 text-center">Representantes Estudiantiles</h3>
+      <h3 class="font-extrabold text-red-900 mb-4 text-center">Representantes Estudiantiles</h3>
 
-      <button onclick="document.getElementById('estudiantes').classList.toggle('hidden')"
-        class="w-full bg-red-800 hover:bg-red-900 text-white text-sm font-bold py-2 rounded-xl">
+      <button onclick="document.getElementById('estudiantes-consejo').classList.toggle('hidden')"
+        class="w-full bg-red-800 hover:bg-red-900 text-white text-sm font-extrabold py-2 rounded-xl transition active:scale-[0.98]">
         Ver representantes
       </button>
 
-      <div id="estudiantes" class="hidden mt-4 space-y-3 text-sm">
+      <div id="estudiantes-consejo" class="hidden mt-4 space-y-3 text-sm">
         ${[
           {
             nombre: "Stassy Anika Clares Morón",
@@ -940,40 +1416,45 @@ consejo: `
             link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/09/28/RR-1594-2024.pdf"
           }
         ].map(e => `
-          <div class="border rounded-xl p-3">
+          <div class="border border-rose-100 rounded-xl p-3 hover:bg-rose-50/60 transition">
             <p class="font-semibold">${e.nombre}</p>
-            <a href="${e.link}" target="_blank"
-              class="inline-block mt-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1 rounded-lg">
+            <a href="${e.link}" target="_blank" rel="noopener noreferrer"
+              class="inline-block mt-2 bg-red-700 hover:bg-red-800 text-white text-xs font-extrabold px-3 py-1 rounded-lg transition active:scale-[0.98]">
               Descargar ${e.resolucion}
             </a>
           </div>
         `).join("")}
       </div>
-      
     </div>
-    <!-- BOTÓN PORTAL DE TRANSPARENCIA -->
-<div class="md:col-span-3 flex justify-center">
-  <a
-    href="https://www.unica.edu.pe/transparencia"
-    target="_blank"
-    class="bg-red-800 hover:bg-red-900 text-white font-semibold px-10 py-3 rounded-full transition"
-  >
-    Portal de Transparencia
-  </a>
-</div>
 
+    <div class="md:col-span-3 flex justify-center">
+      <a href="https://www.unica.edu.pe/transparencia" target="_blank" rel="noopener noreferrer"
+        class="bg-red-800 hover:bg-red-900 text-white font-extrabold px-10 py-3 rounded-full transition shadow-md active:scale-[0.98]">
+        Portal de Transparencia
+      </a>
+    </div>
+  </div>
+</div>
+      `,
+
+      programas: `
+<div>
+  <div class="mb-14 text-center">
+    <h3 class="text-sm uppercase tracking-[3px] text-red-800 font-semibold">
+      Formación Académica
+    </h3>
+
+    <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 flex items-center justify-center gap-3 mt-3">
+      <span class="bg-red-100 p-2 rounded-full shadow-sm">
+        <i data-lucide="briefcase" class="text-red-800 w-8 h-8"></i>
+      </span>
+      Oferta Académica
+    </h2>
+
+    <div class="w-24 h-1 bg-red-800 mt-6 rounded-full mx-auto"></div>
   </div>
 
-</div>
-`,
-            programas: `
-<div>
-  <h2 class="text-3xl font-bold text-red-900 mb-10 text-center uppercase">
-    Oferta Académica
-  </h2>
-
   <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-
     ${[
       {
         titulo: "Pregrado en Obstetricia",
@@ -1008,52 +1489,74 @@ consejo: `
         link: "https://www.unica.edu.pe/posgrado/"
       }
     ].map(p => `
-      <div class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden group">
-        
+      <div class="bg-white rounded-2xl shadow-sm border border-rose-100 overflow-hidden group hover:shadow-lg transition">
         <div class="relative overflow-hidden">
-          <img src="${p.img}" 
+          <img src="${p.img}"
                class="w-full h-52 object-cover group-hover:scale-110 transition-transform duration-500"
                alt="${p.titulo}">
           <div class="absolute inset-0 bg-red-900/10"></div>
         </div>
 
         <div class="p-6">
-          <h3 class="text-xl font-bold text-red-900 mb-2">${p.titulo}</h3>
+          <h3 class="text-xl font-extrabold text-red-900 mb-2">${p.titulo}</h3>
 
-          <p class="text-sm text-gray-600 mb-4">
+          <p class="text-sm text-slate-600 mb-4">
             ${p.descripcion}
           </p>
 
-          <ul class="text-sm text-gray-700 mb-4 space-y-1">
+          <ul class="text-sm text-slate-700 mb-4 space-y-1">
             <li><strong>Duración:</strong> ${p.duracion}</li>
             <li><strong>Grado/Título:</strong> ${p.grado}</li>
           </ul>
 
-          <a href="${p.link}" 
-             class="inline-block bg-red-900 hover:bg-red-800 text-white text-sm font-bold px-5 py-2 rounded-xl transition">
+          <a href="${p.link}" target="_blank" rel="noopener noreferrer"
+             class="inline-block bg-red-900 hover:bg-red-800 text-white text-sm font-extrabold px-5 py-2 rounded-xl transition shadow-sm active:scale-[0.98]">
             Ver más información
           </a>
         </div>
       </div>
     `).join("")}
-
   </div>
 </div>
-`,
+      `,
 
-            noticias: `
-<div>
-  <h2 class="text-3xl font-bold text-red-900 mb-8 text-center">
-    Noticias y Avisos
+      noticias: `
+<div class="mb-14 text-center">
+  <h3 class="text-sm uppercase tracking-[3px] text-red-800 font-semibold">
+    Actualidad Institucional
+  </h3>
+
+  <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 flex items-center justify-center gap-3 mt-3">
+    <span class="bg-red-100 p-2 rounded-full shadow-sm">
+      <i data-lucide="newspaper" class="text-red-800 w-8 h-8"></i>
+    </span>
+    Noticias
   </h2>
+
+  <div class="w-24 h-1 bg-red-800 mt-6 rounded-full mx-auto"></div>
+</div>
 
   <div class="space-y-6">
     ${
       [
         {
+          fecha: "14 FEB 2026",
+          titulo: "Saludo de la Facultad de Obstetricia",
+          resumen: "La Facultad de Obstetricia saluda con gran entusiasmo a la Universidad Nacional San Luis Gonzaga de Ica por su 65° aniversario, reconociendo su trayectoria y compromiso con la formación de profesionales de la salud.",
+          imagen: "imagenes/saludo.jpg",
+          link: "https://www.facebook.com/share/p/1AM79GwcES/"
+        },
+        {
+          fecha: "13 FEB 2026",
+          titulo: "S Evento académico sobre estilos de vida saludable",
+          resumen: "La Facultad de Obstetricia presentó un evento académico sobre estilos de vida saludable, organizado por los estudiantes del curso Atención de la Mujer en la Etapa Preconcepcional (V ciclo), con el objetivo de promover hábitos saludables entre la comunidad universitaria.",
+          imagen: "imagenes/13feb.jpg",
+          link: "https://www.facebook.com/share/p/1AchLdTrp4/"
+        },
+    {
           fecha: "30 DIC 2025",
           titulo: "Cronograma de Clase Magistral y Entrevista Personal",
-          resumen: "Se comunica a los postulantes aptos del Concurso Público para Contrato Docente 2025 que la Clase Magistral y la Entrevista Personal se realizarán el: 30 de Diciembre a las 9:00 am en Sala de Docentes.  ",
+          resumen: "Se comunica a los postulantes aptos del Concurso Público para Contrato Docente 2025 que la Clase Magistral y la Entrevista Personal se realizarán el: 30 de Diciembre a las 9:00 am en Sala de Docentes.",
           imagen: "imagenes/convocatoria.jpg",
           link: "https://www.facebook.com/share/p/1HCVnPjGHn/"
         },
@@ -1100,55 +1603,57 @@ consejo: `
           link: "https://www.facebook.com/share/p/1DRkR1Sp5S/"
         },
       ].map(noticia => `
-        <a 
-          href="${noticia.link}"
-          class="block group"
-        >
-          <div class="bg-white p-4 rounded-xl shadow-sm border border-pink-50 
-                      flex gap-4 items-center hover:border-pink-200 transition">
+        <a href="${noticia.link}" target="_blank" rel="noopener noreferrer" class="block group">
+          <div class="bg-white p-4 rounded-xl shadow-sm border border-rose-100
+                      flex gap-4 items-center hover:border-rose-200 hover:shadow-md transition">
 
-            <!-- Imagen -->
             <div class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-lg">
-              <img 
-                src="${noticia.imagen}" 
+              <img
+                src="${noticia.imagen}"
                 alt="${noticia.titulo}"
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
             </div>
 
-            <!-- Texto -->
             <div class="flex-1">
-              <p class="text-xs text-pink-500 font-bold uppercase mb-1">
+              <p class="text-xs text-pink-700 font-extrabold uppercase mb-1">
                 ${noticia.fecha}
               </p>
 
-              <h4 class="font-bold text-gray-800 leading-tight">
+              <h4 class="font-extrabold text-slate-800 leading-tight">
                 ${noticia.titulo}
               </h4>
 
-              <p class="text-xs text-gray-600 mt-1">
+              <p class="text-xs text-slate-600 mt-1">
                 ${noticia.resumen}
               </p>
             </div>
 
-            <!-- Flecha -->
             <i data-lucide="chevron-right" class="text-red-800 w-5 h-5"></i>
           </div>
         </a>
       `).join("")}
   </div>
 </div>
-`,
+      `,
 
-            
-            testimonios: `
-<div>
-  <h2 class="text-3xl font-bold text-red-900 mb-10 text-center uppercase tracking-widest">
-    Nuestros Estudiantes y Egresados
+      testimonios: `
+<div class="mb-14 text-center">
+  <h3 class="text-sm uppercase tracking-[3px] text-red-800 font-semibold">
+    Comunidad Académica
+  </h3>
+
+  <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 flex items-center justify-center gap-3 mt-3">
+    <span class="bg-red-100 p-2 rounded-full shadow-sm">
+      <i data-lucide="message-square-quote" class="text-red-800 w-8 h-8"></i>
+    </span>
+    Testimonios
   </h2>
 
-  <div class="grid md:grid-cols-2 gap-8">
+  <div class="w-24 h-1 bg-red-800 mt-6 rounded-full mx-auto"></div>
+</div>
 
+  <div class="grid md:grid-cols-2 gap-8">
     ${[
       {
         nombre: "Lic. María Rosa Espinoza",
@@ -1162,7 +1667,7 @@ consejo: `
         nombre: "Estudiante: Lina Manrique Huancahuari <p> I CICLO - B",
         texto: "Estudiar Obstetricia en la UNICA significa vivir cada día la pasión por la salud materna, combinada con el espíritu de lucha y compromiso que caracteriza a sus estudiantes. Aquí aprendí que la vocación y la perseverancia van de la mano en cada etapa de la formación profesional."
       },
-      { 
+      {
         nombre: "Estudiante: Brilleth Aija Reyes <p> I CICLO - B",
         texto: "Estudiar Obstetricia en la UNICA implica asumir un compromiso constante con la salud y la formación profesional, aprendiendo también a desenvolverse con resiliencia frente a los desafíos institucionales que forman parte de la vida universitaria"
       },
@@ -1174,148 +1679,786 @@ consejo: `
         nombre: "Estudiante: Valeria Palacios Mendoza <p> III CICLO - B",
         texto: "La Obstetricia en la UNICA no solo me formó académicamente, también me enseñó a ser perseverante, solidaria y consciente de la realidad social. Cada experiencia vivida fortaleció mi vocación de servicio y mi compromiso con la salud de las mujeres."
       }
-      
     ].map(t => `
-      <div class="bg-red-900 text-white p-10 rounded-3xl text-center relative shadow-lg">
-
-        <i data-lucide="quote" 
-           class="w-12 h-12 mx-auto mb-6 text-pink-400 opacity-50"></i>
+      <div class="bg-red-900 text-white p-10 rounded-3xl text-center relative shadow-lg hover:shadow-2xl transition">
+        <i data-lucide="quote" class="w-12 h-12 mx-auto mb-6 text-pink-300 opacity-60"></i>
 
         <p class="text-lg italic font-light mb-6 leading-relaxed">
           "${t.texto}"
         </p>
 
-        <h4 class="font-bold text-pink-300 uppercase tracking-wide">
+        <h4 class="font-extrabold text-pink-200 uppercase tracking-wide">
           – ${t.nombre}
         </h4>
-
       </div>
     `).join("")}
-
   </div>
 </div>
-`,
+      `,
 
-            
-           faq: `
-<div>
-  <h2 class="text-3xl font-bold text-red-900 mb-8">Preguntas Frecuentes</h2>
+    };
 
-  <div class="space-y-4">
-    ${
-      [
-        {
-          pregunta: "¿Cómo solicito mi constancia de estudios?",
-          respuesta: "Debes realizar el pago correspondiente en tesorería y adjuntar el voucher mediante la plataforma virtual o mesa de partes."
-        },
-        {
-          pregunta: "¿Cuántos años dura la carrera de Obstetricia?",
-          respuesta: "La carrera tiene una duración aproximada de 5 años, distribuidos en 10 ciclos académicos, más el internado."
-        },
-        {
-          pregunta: "¿Dónde se realizan las prácticas preprofesionales?",
-          respuesta: "Las prácticas se desarrollan en hospitales, centros de salud y establecimientos con convenio con la universidad."
-        },
-        {
-          pregunta: "¿Cómo puedo acceder a mi aula virtual?",
-          respuesta: "Debes ingresar con tu usuario institucional al sistema virtual asignado por la universidad."
-        },
-        {
-          pregunta: "¿Qué requisitos necesito para matricularme?",
-          respuesta: "Debes haber aprobado el ciclo anterior, no tener deudas pendientes y seguir el cronograma oficial de matrícula."
-        },
-        {
-          pregunta: "¿La facultad cuenta con laboratorios especializados?",
-          respuesta: "Sí, cuenta con laboratorios equipados para prácticas de simulación y formación profesional."
-        },
-        {
-          pregunta: "¿Cómo solicito una constancia o certificado académico?",
-          respuesta: "La solicitud se realiza mediante mesa de partes, adjuntando el comprobante de pago correspondiente."
-        },
-        {
-          pregunta: "¿Existe apoyo psicológico para los estudiantes?",
-          respuesta: "Sí, la universidad brinda servicios de orientación psicológica y bienestar universitario."
-        },
-        {
-          pregunta: "¿Puedo realizar investigaciones siendo estudiante?",
-          respuesta: "Sí, puedes participar en proyectos y líneas de investigación promovidas por la facultad."
-        },
-        {
-          pregunta: "¿Dónde puedo informarme sobre comunicados oficiales?",
-          respuesta: "Los comunicados se publican en la página web oficial y redes institucionales de la facultad."
-        }
+    function setActiveNav(viewKey){
+      document.querySelectorAll(".nav-item").forEach((item) => {
+        item.classList.remove("active-link");
+        if ((item.getAttribute("onclick") || "").includes(viewKey)) item.classList.add("active-link");
+      });
+    }
+
+    function navigate(viewKey){
+      // out animation
+      contentArea.classList.add("content-anim-out");
+
+      setTimeout(() => {
+        const view = views[viewKey] || `<div class="text-center p-20 bg-white rounded-2xl border border-rose-100 shadow-sm">
+          <h2 class="text-2xl font-extrabold text-red-900">Sección en construcción</h2>
+        </div>`;
+
+        contentArea.classList.remove("content-anim-out");
+        contentArea.innerHTML = wrapView(view);
+
+        setActiveNav(viewKey);
+
+        // Recreate icons for injected HTML
+        lucide.createIcons();
+
+        // Reveal animations
+        applyRevealToContent(contentArea);
+
+        // Close mobile menu if open
+        if (!sidebar.classList.contains("-translate-x-full")) toggleMenu();
+
+        // Scroll top
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 160);
+    }
+
+    // Header compact on scroll (mejorado)
+    const header = document.getElementById("main-header");
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("shadow-md", window.scrollY > 60);
+    });
+
+    // Initial load
+    window.addEventListener("load", () => navigate("inicio"));
+  </script>
+
+  <!-- =======================
+     CHATBOT FLOTANTE (HTML + CSS + JS)
+     - Más lógica (intents + FAQ + contexto)
+     - Manejo de ciclo, cambio de ciclo
+     - Sugerencias cuando no entiende
+     - Botones rápidos dinámicos
+======================= -->
+
+<!-- BOTÓN FLOTANTE -->
+<div id="chatbot-button"
+  class="fixed bottom-6 right-6 bg-red-900 text-white p-4 rounded-full shadow-2xl cursor-pointer z-50 hover:scale-[1.03] transition active:scale-[0.98]"
+  aria-label="Abrir chat">
+  <i data-lucide="message-circle"></i>
+</div>
+
+<!-- CHATBOT -->
+<div id="chatbot"
+  class="fixed bottom-24 right-6 w-80 h-[520px] bg-white rounded-2xl shadow-2xl border border-rose-100 hidden flex flex-col overflow-hidden z-50">
+
+  <!-- HEADER -->
+  <div class="bg-red-900 text-white px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <img src="imagenes/avatarchat.png" class="w-9 h-9 rounded-full bg-white p-1" alt="Obstetra Virtual">
+      <div>
+        <p class="text-sm font-extrabold">Obstetra Virtual</p>
+        <p class="text-[11px] opacity-80">En línea</p>
+      </div>
+    </div>
+    <button id="close-chat" aria-label="Cerrar chat">
+      <i data-lucide="x" class="w-4 h-4"></i>
+    </button>
+  </div>
+
+  <!-- MENSAJES -->
+  <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-slate-50 text-sm flex flex-col gap-3"></div>
+
+  <!-- ACCESOS RÁPIDOS -->
+  <div id="quick-access" class="p-3 bg-white border-t border-rose-100">
+    <p class="text-[11px] font-extrabold text-slate-400 mb-2 uppercase">Accesos rápidos</p>
+    <div id="chips" class="flex flex-wrap gap-2"></div>
+  </div>
+
+  <!-- INPUT -->
+  <div class="p-3 border-t border-rose-100 bg-white flex gap-2">
+    <input id="chat-input" type="text" placeholder="Escribe tu consulta..."
+      class="flex-1 px-3 py-2 rounded-xl border border-rose-100 focus:outline-none" />
+    <button id="send-btn" aria-label="Enviar mensaje" class="text-red-900 hover:text-red-800 transition">
+      <i data-lucide="send" class="w-5 h-5"></i>
+    </button>
+  </div>
+</div>
+
+<style>
+  .chip {
+    background: #fffafc;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .chip:hover {
+    background: #7f1d1d;
+    color: white;
+    border-color: #7f1d1d;
+  }
+  .msg {
+    max-width: 86%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.35;
+    white-space: pre-line;
+  }
+  .msg-bot {
+    background: white;
+    border: 1px solid #e5e7eb;
+    align-self: flex-start;
+  }
+  .msg-user {
+    background: #7f1d1d;
+    color: white;
+    align-self: flex-end;
+  }
+  .msg small {
+    display: block;
+    opacity: .7;
+    margin-top: 6px;
+    font-size: 10px;
+  }
+  .msg-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .msg-actions button {
+    background: #fffafc;
+    border: 1px solid #e2e8f0;
+    color: #7f1d1d;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .msg-actions button:hover {
+    background: #7f1d1d;
+    color: #fff;
+    border-color: #7f1d1d;
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.lucide) lucide.createIcons();
+
+  const btn = document.getElementById("chatbot-button");
+  const chat = document.getElementById("chatbot");
+  const close = document.getElementById("close-chat");
+  const messages = document.getElementById("chat-messages");
+  const input = document.getElementById("chat-input");
+  const sendBtn = document.getElementById("send-btn");
+  const chipsWrap = document.getElementById("chips");
+  const quickAccess = document.getElementById("quick-access");
+
+  // ======= CONFIGURACIÓN =======
+  // Conecta aquí tu navegación real si existe
+  function navigate(section){
+    // Ejemplo: window.location.href = `#${section}`;
+    // o tu router / scroll a secciones
+    console.log("navigate:", section);
+  }
+
+  // ======= UTILIDADES =======
+  function normalizar(t){
+    return (t || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^\w\s¿?¡!]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+  function contieneAlguna(t, arr){ return arr.some(x => t.includes(x)); }
+  function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+
+  function extraerNumero(t){
+    const m = t.match(/\b(10|[1-9])\b/);
+    return m ? parseInt(m[1], 10) : null;
+  }
+  function detectarCiclo(t){
+    const map = {
+      1:["1","primer","primero","1er"],
+      2:["2","segundo","2do"],
+      3:["3","tercer","tercero","3er"],
+      4:["4","cuarto","4to"],
+      5:["5","quinto","5to"],
+      6:["6","sexto","6to"],
+      7:["7","septimo","7mo"],
+      8:["8","octavo","8vo"],
+      9:["9","noveno","9no"],
+      10:["10","decimo","10mo"]
+    };
+    for (const c in map){
+      if (map[c].some(p => t.includes(p))) return parseInt(c, 10);
+    }
+    const n = extraerNumero(t);
+    if (n && n >= 1 && n <= 10) return n;
+    return null;
+  }
+
+  function scrollDown(){
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function addMessage(type, html){
+    const div = document.createElement("div");
+    div.className = `msg ${type === "bot" ? "msg-bot" : "msg-user"}`;
+    div.innerHTML = html;
+    messages.appendChild(div);
+    scrollDown();
+    return div;
+  }
+
+  // Crea botones debajo de un mensaje del bot
+  function addActions(msgDiv, actions = []){
+    if (!actions.length) return;
+    const wrap = document.createElement("div");
+    wrap.className = "msg-actions";
+    actions.forEach(a => {
+      const b = document.createElement("button");
+      b.textContent = a.label;
+      b.onclick = () => enviar(a.payload, { silentUser: false });
+      wrap.appendChild(b);
+    });
+    msgDiv.appendChild(wrap);
+    scrollDown();
+  }
+
+  // ======= ESTADO =======
+  const state = {
+    primerMensaje: true,
+    esperandoCiclo: true,
+    ciclo: null,
+    ultimaSeccion: null, // "malla", "docentes"...
+    nombre: null,
+  };
+
+  // ======= RESPUESTAS / MENÚ =======
+  const respuestas = {
+    saludo: [
+      "¡Hola! 😊 Soy <b>Obstetra Virtual</b>. ¿En qué ciclo estás? (1–10)\nEj: <i>3</i> o <i>tercer ciclo</i>.",
+      "¡Buenas! 😄 Para ayudarte mejor dime tu ciclo (1–10)."
+    ],
+    pedirCiclo: [
+      "¿En qué ciclo estás? (Ej: <i>primer ciclo</i> o <i>3</i>)",
+      "Para darte info exacta, dime tu ciclo (1–10)."
+    ],
+    confirmCiclo: (c) =>
+      `Perfecto ✅ Estás en el <b>ciclo ${c}</b>.\n\n¿Sobre qué tema quieres info?`,
+
+    menuText:
+`📌 <b>Menú rápido</b>
+• malla
+• docentes
+• autoridades
+• programas
+• eventos
+• noticias
+• contacto
+• faq / preguntas
+• cambiar ciclo`,
+
+    noEntiendo: [
+      "No lo entendí del todo 😅 ¿Puedes decirlo de otra forma?",
+      "Mmm, creo que no te seguí. ¿Te refieres a malla, docentes, programas, eventos o contacto?"
+    ],
+  };
+
+  // Acciones rápidas (chips)
+  const CHIP_ACTIONS = [
+    { label:"Historia", payload:"historia" },
+    { label:"Autoridades", payload:"autoridades" },
+    { label:"Docentes", payload:"docentes" },
+    { label:"Malla", payload:"malla" },
+    { label:"Noticias", payload:"noticias" },
+    { label:"Contáctanos", payload:"contacto" },
+    { label:"FAQ", payload:"faq" },
+  ];
+
+  // ======= FAQ (AMPLÍA AQUÍ) =======
+  const FAQ = {
+    general: [
+      { q: ["horario", "horarios", "atencion"], a: "Los horarios dependen del área/servicio. Si me dices si buscas *atención*, *clases* o *oficina*, te guío mejor." },
+      { q: ["matricula", "matricular", "inscripcion", "inscribirme"], a: "La matrícula suele publicarse en *Noticias/Comunicados*. ¿Buscas *fechas* o *requisitos*?" },
+      { q: ["requisitos", "documentos", "tramites"], a: "Depende del trámite. ¿Es para *matrícula*, *prácticas* o *titulación*?" },
+      { q: ["beca", "becas", "descuento"], a: "Las becas/descuentos se anuncian por comunicados. Revisa *Noticias* y dime si buscas requisitos o convocatoria." },
+    ],
+    malla: [
+      { q: ["cursos", "asignaturas", "materias"], a: "Puedo orientarte con los cursos por ciclo. ¿Quieres lista completa o solo los principales?" },
+      { q: ["creditos", "créditos"], a: "Los créditos dependen del plan de estudios. ¿Buscas créditos por curso o por ciclo?" },
+      { q: ["prerequisitos", "pre requisitos", "requisitos de curso"], a: "Los prerrequisitos se ven en el plan de estudios/sílabos. Dime el curso y te digo qué buscar." },
+    ],
+    docentes: [
+      { q: ["correo", "email", "contactar"], a: "Para contactar docentes, normalmente se usa correo institucional. ¿Buscas un docente en específico?" },
+      { q: ["tutoria", "tutorias", "asesoria", "asesor"], a: "Las tutorías suelen anunciarse por curso o coordinación. ¿De qué curso o tema es tu tutoría?" },
+    ],
+    noticias: [
+      { q: ["comunicado", "comunicados"], a: "Los comunicados se publican en la sección de Noticias/Avisos. ¿Buscas uno de *matrícula*, *prácticas* o *eventos*?" },
+    ],
+    contacto: [
+      { q: ["ubicacion", "direccion", "ubicación", "dirección"], a: "La ubicación se encuentra en *Contacto*. ¿Quieres llegar por mapa o solo la dirección?" },
+      { q: ["telefono", "teléfono", "celular"], a: "El teléfono suele estar en la sección *Contacto*. ¿Necesitas oficina académica o atención general?" },
+    ]
+  };
+
+  function responderFAQ(t){
+    const packs = [];
+    packs.push(...(FAQ.general || []));
+    if (state.ultimaSeccion && FAQ[state.ultimaSeccion]) packs.push(...FAQ[state.ultimaSeccion]);
+
+    for (const item of packs){
+      if (item.q.some(k => normalizar(k).split(" ").every(w => t.includes(w)) || t.includes(normalizar(k)))){
+        return item.a;
+      }
+    }
+    return null;
+  }
+
+  function sugerir(t){
+    const sug = [];
+    if (contieneAlguna(t, ["matri","inscrip","pago","requis"])) sug.push("noticias", "faq");
+    if (contieneAlguna(t, ["curso","mater","asign","malla","plan"])) sug.push("malla");
+    if (contieneAlguna(t, ["profe","docen","profesor"])) sug.push("docentes");
+    if (contieneAlguna(t, ["correo","tel","ubi","direccion","contact"])) sug.push("contacto");
+    if (contieneAlguna(t, ["autor","decan","director","coordin"])) sug.push("autoridades");
+    return sug.length ? `¿Te refieres a: <b>${[...new Set(sug)].join(", ")}</b>?` : null;
+  }
+
+  // ======= INTENTS (más lógica) =======
+  const INTENTS = [
+    {
+      name: "saludo",
+      match: (t) => contieneAlguna(t, ["hola","buenas","buenos dias","buenas tardes","buenas noches","hey"]),
+      run: () => pick(respuestas.saludo),
+      actions: () => [{label:"Dime mi ciclo", payload:"cambiar ciclo"}, {label:"Ver menú", payload:"menu"}]
+    },
+    {
+      name: "menu",
+      match: (t) => contieneAlguna(t, ["menu","opciones","ayuda","help","que puedes hacer","que haces","comandos"]),
+      run: () => respuestas.menuText,
+      actions: () => [
+        {label:"Malla", payload:"malla"},
+        {label:"Docentes", payload:"docentes"},
+        {label:"Noticias", payload:"noticias"},
+        {label:"Contacto", payload:"contacto"},
+        {label:"Cambiar ciclo", payload:"cambiar ciclo"},
       ]
-      .map(item => `
-        <div class="bg-white p-5 rounded-xl border border-pink-100">
-          <h4 class="font-bold text-red-900 flex items-center">
-            <i data-lucide="help-circle" class="w-4 h-4 mr-2"></i>
-            ${item.pregunta}
-          </h4>
-          <p class="mt-2 text-sm text-gray-600">
-            ${item.respuesta}
-          </p>
-        </div>
-      `)
-      .join("")
+    },
+    {
+      name: "cambiar_ciclo",
+      match: (t) => contieneAlguna(t, ["cambiar ciclo","otro ciclo","actualizar ciclo","modificar ciclo","volver a ciclo","reiniciar ciclo"]),
+      run: () => {
+        state.esperandoCiclo = true;
+        state.ciclo = null;
+        return "Claro ✅ Dime tu nuevo ciclo (1–10).";
+      }
+    },
+    {
+      name: "inicio",
+      match: (t) => contieneAlguna(t, ["inicio","principal","home","volver"]),
+      run: () => {
+        state.ultimaSeccion = "inicio";
+        navigate("inicio");
+        return "Volvamos al inicio 🏠\n\n" + respuestas.menuText;
+      }
+    },
+    {
+      name: "historia",
+      match: (t) => contieneAlguna(t, ["historia","reseña","resena"]),
+      run: () => {
+        state.ultimaSeccion = "historia";
+        navigate("historia");
+        return "📖 Historia: aquí puedes conocer la historia de la Facultad.\n¿Quieres un resumen o ir a la sección?";
+      },
+      actions: () => [{label:"Ir a Historia", payload:"ir historia"}, {label:"Menú", payload:"menu"}]
+    },
+    {
+      name: "ir_historia",
+      match: (t) => t === "ir historia",
+      run: () => {
+        navigate("historia");
+        return "Listo ✅ Te llevo a Historia.";
+      }
+    },
+    {
+      name: "autoridades",
+      match: (t) => contieneAlguna(t, ["autoridades","decan","decanato","director","coordinador","consejo"]),
+      run: () => {
+        state.ultimaSeccion = "autoridades";
+        navigate("autoridades");
+        return "🏛️ Autoridades: ¿qué buscas?\n• Decanato\n• Dirección\n• Consejo\n• Coordinación";
+      },
+      actions: () => [
+        {label:"Ver Autoridades", payload:"ir autoridades"},
+        {label:"Consejo", payload:"consejo"},
+        {label:"Menú", payload:"menu"}
+      ]
+    },
+    {
+      name: "ir_autoridades",
+      match: (t) => t === "ir autoridades",
+      run: () => { navigate("autoridades"); return "✅ Abriendo Autoridades."; }
+    },
+    {
+      name: "consejo",
+      match: (t) => contieneAlguna(t, ["consejo"]),
+      run: () => { navigate("consejo"); state.ultimaSeccion="autoridades"; return "✅ Abriendo Consejo de Facultad."; }
+    },
+    {
+      name: "docentes",
+      match: (t) => contieneAlguna(t, ["docentes","docente","profesor","profe","catedratico"]),
+      run: () => {
+        state.ultimaSeccion = "docentes";
+        navigate("docentes");
+        return "👩‍🏫 Docentes: dime si buscas por *curso*, *nombre* o *ciclo*.\nEj: “docentes de ginecología”.";
+      },
+      actions: () => [
+        {label:"Ver Docentes", payload:"ir docentes"},
+        {label:"Buscar por curso", payload:"buscar docentes por curso"},
+        {label:"Menú", payload:"menu"}
+      ]
+    },
+    {
+      name: "ir_docentes",
+      match: (t) => t === "ir docentes",
+      run: () => { navigate("docentes"); return "✅ Abriendo Docentes."; }
+    },
+    {
+      name: "malla",
+      match: (t) => contieneAlguna(t, ["malla","cursos","plan de estudios","asignaturas","materias","silabo","silabus","sílabos"]),
+      run: () => {
+        state.ultimaSeccion = "malla";
+        navigate("malla");
+        if (!state.ciclo) return "Para orientarte mejor con la malla necesito tu ciclo (1–10).";
+        return `📚 Malla (ciclo ${state.ciclo}): ¿qué necesitas?\n• ver cursos\n• ver créditos\n• ver prerrequisitos`;
+      },
+      actions: () => [
+        {label:"Ver Malla", payload:"ir malla"},
+        {label:"Cursos", payload:"ver cursos"},
+        {label:"Créditos", payload:"ver creditos"},
+        {label:"Prerrequisitos", payload:"ver prerrequisitos"},
+      ]
+    },
+    {
+      name: "ir_malla",
+      match: (t) => t === "ir malla",
+      run: () => { navigate("malla"); return "✅ Abriendo Malla curricular."; }
+    },
+    {
+      name: "programas",
+      match: (t) => contieneAlguna(t, ["programas","programa academico","carrera","oferta academica","pregrado","posgrado"]),
+      run: () => {
+        state.ultimaSeccion = "programas";
+        navigate("programas");
+        return "🎓 Programas: ¿te interesa *pregrado*, *posgrado* o *cursos/talleres*?";
+      },
+      actions: () => [{label:"Ver Programas", payload:"ir programas"}, {label:"Menú", payload:"menu"}]
+    },
+    {
+      name: "ir_programas",
+      match: (t) => t === "ir programas",
+      run: () => { navigate("programas"); return "✅ Abriendo Programas académicos."; }
+    },
+    {
+      name: "eventos",
+      match: (t) => contieneAlguna(t, ["evento","eventos","charla","taller","congreso","seminario"]),
+      run: () => {
+        state.ultimaSeccion = "eventos";
+        navigate("eventos");
+        return "📅 Eventos: ¿quieres ver los *próximos* o buscar por *tema*?\nEj: “taller de neonatología”.";
+      },
+      actions: () => [{label:"Ver Eventos", payload:"ir eventos"}, {label:"Próximos", payload:"proximos eventos"}]
+    },
+    {
+      name: "ir_eventos",
+      match: (t) => t === "ir eventos",
+      run: () => { navigate("eventos"); return "✅ Abriendo Eventos."; }
+    },
+    {
+      name: "noticias",
+      match: (t) => contieneAlguna(t, ["noticias","aviso","avisos","comunicado","comunicados"]),
+      run: () => {
+        state.ultimaSeccion = "noticias";
+        navigate("noticias");
+        return "📰 Noticias y comunicados: ¿buscas algo de *matrícula*, *prácticas* o *eventos*?";
+      },
+      actions: () => [{label:"Ver Noticias", payload:"ir noticias"}, {label:"Matrícula", payload:"matricula"}]
+    },
+    {
+      name: "ir_noticias",
+      match: (t) => t === "ir noticias",
+      run: () => { navigate("noticias"); return "✅ Abriendo Noticias."; }
+    },
+    {
+      name: "contacto",
+      match: (t) => contieneAlguna(t, ["contacto","correo","telefono","teléfono","whatsapp","ubicacion","ubicación","direccion","dirección"]),
+      run: () => {
+        state.ultimaSeccion = "contacto";
+        navigate("contacto");
+        return "📩 Contacto: dime si necesitas *correo*, *teléfono*, *ubicación* o *horario de atención*.";
+      },
+      actions: () => [{label:"Ver Contacto", payload:"ir contacto"}, {label:"Menú", payload:"menu"}]
+    },
+    {
+      name: "ir_contacto",
+      match: (t) => t === "ir contacto",
+      run: () => { navigate("contacto"); return "✅ Abriendo Contacto."; }
+    },
+    {
+      name: "faq",
+      match: (t) => contieneAlguna(t, ["faq","preguntas","preguntas frecuentes","duda","dudas"]),
+      run: () => {
+        state.ultimaSeccion = "faq";
+        return "❓ Preguntas frecuentes: dime tu duda (ej: matrícula, horarios, requisitos).";
+      },
+      actions: () => [{label:"Matrícula", payload:"matricula"}, {label:"Horarios", payload:"horarios"}, {label:"Requisitos", payload:"requisitos"}]
+    },
+  ];
+
+  // ======= MOTOR DE RESPUESTA =======
+  function procesar(texto){
+    const t = normalizar(texto);
+
+    // Estado: esperando ciclo
+    if (state.esperandoCiclo){
+      const c = detectarCiclo(t);
+      if (c){
+        state.ciclo = c;
+        state.esperandoCiclo = false;
+        state.ultimaSeccion = "general";
+        return {
+          text: respuestas.confirmCiclo(c),
+          actions: [
+            {label:"Malla", payload:"malla"},
+            {label:"Docentes", payload:"docentes"},
+            {label:"Noticias", payload:"noticias"},
+            {label:"Menú", payload:"menu"},
+          ]
+        };
+      }
+
+      if (t.length > 0 && !contieneAlguna(t, ["hola","buenas","menu","ayuda"])){
+        return { text: "Antes de eso, dime tu ciclo (1–10) 🙂", actions: [{label:"Cambiar ciclo", payload:"cambiar ciclo"}] };
+      }
+
+      return { text: pick(respuestas.pedirCiclo), actions: [{label:"1", payload:"1"}, {label:"3", payload:"3"}, {label:"5", payload:"5"}, {label:"10", payload:"10"}] };
     }
+
+    // Intents
+    for (const intent of INTENTS){
+      if (intent.match(t)){
+        const text = intent.run(t);
+        const actions = intent.actions ? intent.actions() : [];
+        return { text, actions };
+      }
+    }
+
+    // FAQ
+    const faq = responderFAQ(t);
+    if (faq){
+      return { text: "✅ " + faq, actions: [{label:"Menú", payload:"menu"}] };
+    }
+
+    // Sugerencias
+    const s = sugerir(t);
+    if (s){
+      return { text: s + "\n\n" + respuestas.menuText, actions: [{label:"Menú", payload:"menu"}] };
+    }
+
+    return { text: pick(respuestas.noEntiendo) + "\n\n" + respuestas.menuText, actions: [{label:"Menú", payload:"menu"}] };
+  }
+
+  // ======= ENVIAR =======
+  function enviar(txt, opts = {}){
+    const texto = (txt || "").toString();
+    if (!texto.trim()) return;
+
+    if (!opts.silentUser){
+      addMessage("user", texto);
+    }
+    input.value = "";
+
+    const out = procesar(texto);
+
+    setTimeout(() => {
+      const botMsg = addMessage("bot", out.text);
+      addActions(botMsg, out.actions || []);
+    }, 180);
+  }
+
+  // ======= CHIPS / QUICK ACCESS =======
+  function renderChips(){
+    chipsWrap.innerHTML = "";
+    CHIP_ACTIONS.forEach(c => {
+      const b = document.createElement("button");
+      b.className = "chip";
+      b.textContent = c.label;
+      b.onclick = () => enviar(c.payload);
+      chipsWrap.appendChild(b);
+    });
+  }
+
+  // ======= EVENTOS UI =======
+  btn.onclick = () => {
+    chat.classList.toggle("hidden");
+    if (!chat.classList.contains("hidden")) {
+      input.focus();
+      if (state.primerMensaje){
+        state.primerMensaje = false;
+        renderChips();
+        quickAccess.style.display = "block";
+        addMessage("bot", "Hola 👋 Soy <b>Obstetra Virtual</b>. ¿En qué ciclo académico te encuentras? (1–10)");
+        addMessage("bot", "Ejemplos: <i>3</i>, <i>tercer ciclo</i>, <i>ciclo 5</i>.");
+      }
+    }
+  };
+
+  close.onclick = () => chat.classList.add("hidden");
+
+  sendBtn.onclick = () => enviar(input.value);
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") enviar(input.value);
+  });
+
+});
+</script>
+<!-- Aviso de Felicitación Reina San Luisana 2026 -->
+<div id="reinaAviso" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+
+  <!-- Contenedor de confeti -->
+  <div id="confetti-container" class="absolute inset-0 pointer-events-none"></div>
+
+  <!-- Tarjeta principal -->
+  <div class="relative max-w-4xl w-full bg-white shadow-2xl rounded-3xl overflow-hidden md:flex animate-popIn">
+
+    <!-- Botón de cerrar -->
+    <button id="cerrarAviso" class="absolute top-4 right-4 text-white bg-red-600 hover:bg-red-700 rounded-full w-10 h-10 flex items-center justify-center font-bold z-50">
+      &times;
+    </button>
+
+<!-- Columna de Imagen -->
+<div class="md:w-1/2 relative min-h-[300px] flex items-center justify-center">
+  <!-- Imagen principal -->
+  <img src="imagenes/reinasanluisana.jpeg" 
+       alt="Reina San Luisana 2026" 
+       class="w-full h-full object-cover md:rounded-l-3xl rounded-t-3xl">
+
+  <!-- Texto centrado abajo con sombra -->
+  <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center pointer-events-none px-4">
+    <span class="text-sm uppercase tracking-[0.3em] font-semibold text-white sombra-texto">Orgullo de la Facultad</span>
+    <h2 class="text-3xl md:text-4xl font-serif font-bold text-white sombra-texto mt-1">OBSTETRICIA</h2>
   </div>
 </div>
-`,
-        };
-        function navigate(viewKey) {
-            // Animación de salida
-            contentArea.classList.remove('content-fade');
-            contentArea.style.opacity = '0';
 
-            setTimeout(() => {
-                // Cambiar Contenido
-                contentArea.innerHTML = views[viewKey] || `<div class="text-center p-20"><h2 class="text-2xl font-bold text-red-900">Sección en construcción</h2></div>`;
-                contentArea.classList.add('content-fade');
-                contentArea.style.opacity = '1';
-                
-                // Actualizar estado del menú (estilos activos)
-                document.querySelectorAll('.nav-item').forEach(item => {
-                    item.classList.remove('active-link');
-                    if (item.getAttribute('onclick').includes(viewKey)) {
-                        item.classList.add('active-link');
-                    }
-                });
+<style>
+  /* Sombra solo en las letras, suficiente para contraste */
+  .sombra-texto {
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+  }
+</style>
+  
 
-                // Re-inicializar iconos para el contenido nuevo
-                lucide.createIcons();
+    <!-- Columna de Texto -->
+    <div class="md:w-1/2 p-6 md:p-12 flex flex-col justify-center text-center md:text-left">
+      <div class="mb-4 inline-block mx-auto md:mx-0">
+        <svg class="w-12 h-12 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+        </svg>
+      </div>
 
-                // Cerrar menú móvil si está abierto
-                if (!sidebar.classList.contains('-translate-x-full')) {
-                    toggleMenu();
-                }
+      <h1 class="text-3xl md:text-4xl font-serif font-black text-gray-800 leading-tight mb-4">
+        ¡FELICIDADES <br>
+        <span class="crown-gradient">REINA SAN LUISANA 2026!</span>
+      </h1>
 
-                // Scroll al inicio del contenido
-                window.scrollTo(0, 0);
-            }, 200);
-        }
+      <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+        Nuestra facultad se viste de gala y celebra con inmensa alegría la coronación de nuestra representante. Su belleza, inteligencia y carisma han conquistado a toda la comunidad universitaria.
+      </p>
 
-        // Carga inicial
-        window.onload = () => {
-            navigate('inicio');
-        }
-    </script>
-    
-    <script>
-  const header = document.getElementById("main-header");
+      <div class="flex items-center justify-center md:justify-start space-x-3 text-gray-700 mb-6">
+        <span class="h-px w-8 bg-yellow-500"></span>
+        <span class="font-semibold italic">"Fernanda Lucia Paredes Ramos"</span>
+      </div>
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 60) {
-      header.classList.add("py-1", "shadow-md");
-      header.classList.remove("py-3");
-    } else {
-      header.classList.add("py-3");
-      header.classList.remove("py-1", "shadow-md");
-    }
+      <div class="border-t border-gray-100 pt-4">
+        <p class="text-sm text-gray-400 font-semibold uppercase tracking-widest">Facultad de Obstetricia</p>
+        <p class="text-xs text-gray-400 mt-1">Universidad Nacional San Luis Gonzaga</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .font-serif { font-family: 'Playfair Display', serif; }
+  .crown-gradient {
+    background: linear-gradient(135deg, #d4af37 0%, #f9e29c 50%, #b8860b 100%);
+    background-clip: text; 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #d4af37;
+    opacity: 0.7;
+    border-radius: 50%;
+    animation: fall linear infinite;
+  }
+  @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
+  @keyframes popIn { 0% { transform: scale(0.5); opacity:0;} 100% { transform: scale(1); opacity:1;} }
+  .animate-popIn { animation: popIn 0.5s ease-out; }
+</style>
+
+<script>
+  // Confeti
+  const container = document.getElementById('confetti-container');
+  const colors = ['#d4af37', '#f9e29c', '#b8860b', '#ffffff'];
+  for (let i = 0; i < 50; i++) {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    confetti.style.opacity = Math.random();
+    confetti.style.width = confetti.style.height = (Math.random() * 8 + 4) + 'px';
+    container.appendChild(confetti);
+  }
+
+  // Botón cerrar
+  document.getElementById('cerrarAviso').addEventListener('click', () => {
+    document.getElementById('reinaAviso').classList.add('hidden');
   });
 </script>
+
 </body>
 </html>
-
 
 
 

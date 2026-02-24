@@ -1029,7 +1029,8 @@ autoridades: `
 
       /* ====== MALLA (MISMA INFO) ====== */
       malla: `
-<div>
+<div class="container mx-auto px-4 py-12">
+  <!-- Título -->
   <div class="mb-14 text-center">
     <h3 class="text-sm uppercase tracking-[3px] text-red-800 font-semibold">
       Plan Académico
@@ -1044,141 +1045,478 @@ autoridades: `
 
     <div class="w-24 h-1 bg-red-800 mt-6 rounded-full mx-auto"></div>
   </div>
-<!-- Contenedor donde se mostrará la malla -->
-<div id="malla-container" class="px-4 sm:px-6 lg:px-8 my-12 grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
 
-  <div class="grid lg:grid-cols-2 gap-8">
-    ${
-      [
-        {
-          ciclo: 1,
-          cursos: [
-            { codigo: "1P38011", nombre: "Estrategias del Aprendizaje", creditos: "4.0", desc: "Desarrollo de habilidades cognitivas y métodos de estudio para la formación académica superior." },
-            { codigo: "1P38012", nombre: "Matemática", creditos: "4.0", desc: "Fundamentos lógicos y cálculo aplicado al análisis de datos en salud materno-perinatal." },
-            { codigo: "1P38013", nombre: "Defensa y Realidad Nacional", creditos: "3.0", desc: "Estudio de la soberanía nacional, contexto geopolítico y responsabilidad ciudadana." },
-            { codigo: "1P38014", nombre: "Biología General", creditos: "4.0", desc: "Bases moleculares y celulares de la vida, esenciales para la comprensión de la anatomía." },
-            { codigo: "1P38015", nombre: "Lenguaje", creditos: "3.0", desc: "Comunicación asertiva, redacción científica y expresión oral profesional." }
-          ]
-        },
-        {
-          ciclo: 2,
-          cursos: [
-            { codigo: "1P38031", nombre: "Anatomía General", creditos: "5.0", desc: "Descripción macroscópica detallada de los sistemas y aparatos del cuerpo humano." },
-            { codigo: "1P38032", nombre: "Histología y Embriología General", creditos: "4.0", desc: "Estudio microscópico de tejidos y las etapas iniciales del desarrollo prenatal." },
-            { codigo: "1P38033", nombre: "Física Médica", creditos: "3.0", desc: "Leyes físicas aplicadas al funcionamiento del organismo y equipos médicos." },
-            { codigo: "1P38034", nombre: "Ecología y Desarrollo Sostenible", creditos: "3.0", desc: "Relación entre ecosistemas y salud humana bajo un enfoque sostenible." },
-            { codigo: "1P38035", nombre: "Metodología de la Investigación Científica", creditos: "3.0", desc: "Bases para diseñar y ejecutar proyectos de investigación en salud." }
-          ]
-        },
-        {
-          ciclo: 3,
-          cursos: [
-            { codigo: "1P38031", nombre: "Anatomía General", creditos: "5.0", desc: "Descripción macroscópica detallada de los sistemas y aparatos del cuerpo humano." },
-            { codigo: "1P38032", nombre: "Histología y Embriología General", creditos: "4.0", desc: "Estudio microscópico de tejidos y las etapas iniciales del desarrollo prenatal." },
-            { codigo: "1P38033", nombre: "Física Médica", creditos: "3.0", desc: "Leyes físicas aplicadas al funcionamiento del organismo y equipos médicos." },
-            { codigo: "1P38034", nombre: "Ecología y Desarrollo Sostenible", creditos: "3.0", desc: "Relación entre ecosistemas y salud humana bajo un enfoque sostenible." },
-            { codigo: "1P38035", nombre: "Metodología de la Investigación Científica", creditos: "3.0", desc: "Bases para diseñar y ejecutar proyectos de investigación en salud." }
-          ]
-        },
-        {
-          ciclo: 4,
-          cursos: [
-            { codigo: "1P38041", nombre: "Anatomía Obstétrica", creditos: "4.0", desc: "Estudio específico de la pelvis, canal del parto y estructuras asociadas." },
-            { codigo: "1P38042", nombre: "Fisiología General", creditos: "4.0", desc: "Funcionamiento integral del organismo humano y sus sistemas." },
-            { codigo: "1P38043", nombre: "Microbiología y Parasitología", creditos: "4.0", desc: "Agentes infecciosos y su relación con la salud reproductiva." },
-            { codigo: "1P38044", nombre: "Bioquímica", creditos: "4.0", desc: "Procesos metabólicos celulares y moleculares fundamentales." },
-            { codigo: "1P38045", nombre: "Introducción a la Obstetricia", creditos: "3.0", desc: "Rol profesional, ética y campo laboral del obstetra." }
-          ]
-        },
-        {
-          ciclo: 5,
-          cursos: [
-            { codigo: "1P38051", nombre: "Fisiología Obstétrica", creditos: "4.0", desc: "Cambios fisiológicos durante el embarazo, parto y puerperio." },
-            { codigo: "1P38052", nombre: "Obstetricia I", creditos: "5.0", desc: "Semiología obstétrica y control prenatal del embarazo normal." },
-            { codigo: "1P38053", nombre: "Farmacología General", creditos: "4.0", desc: "Principios del uso terapéutico de medicamentos." },
-            { codigo: "1P38054", nombre: "Nutrición y Salud", creditos: "3.0", desc: "Requerimientos nutricionales de la gestante, madre y recién nacido." }
-          ]
-        },
-        {
-          ciclo: 6,
-          cursos: [
-            { codigo: "1P38061", nombre: "Obstetricia II", creditos: "5.0", desc: "Atención del embarazo de alto riesgo y complicaciones obstétricas." },
-            { codigo: "1P38062", nombre: "Ginecología I", creditos: "4.0", desc: "Bases clínicas y atención ginecológica integral." },
-            { codigo: "1P38063", nombre: "Epidemiología", creditos: "3.0", desc: "Análisis de enfermedades y eventos en salud pública." },
-            { codigo: "1P38064", nombre: "Salud Pública", creditos: "3.0", desc: "Organización del sistema sanitario y prevención comunitaria." },
-            { codigo: "1P38065", nombre: "Psicología", creditos: "3.0", desc: "Procesos psicológicos y acompañamiento en salud reproductiva." }
-          ]
-        },
-        {
-          ciclo: 7,
-          cursos: [
-            { codigo: "1P38071", nombre: "Obstetricia III", creditos: "5.0", desc: "Atención integral del parto y puerperio con enfoque clínico." },
-            { codigo: "1P38072", nombre: "Salud Sexual y Reproductiva", creditos: "4.0", desc: "Promoción, prevención y planificación familiar." },
-            { codigo: "1P38073", nombre: "Bioética", creditos: "3.0", desc: "Dilemas éticos en la práctica clínica y la investigación." },
-            { codigo: "1P38074", nombre: "Educación para la Salud", creditos: "3.0", desc: "Estrategias educativas para la promoción de estilos de vida saludables." },
-            { codigo: "1P38075", nombre: "Preparación Psicoprofiláctica", creditos: "3.0", desc: "Técnicas de preparación física y emocional para el parto." }
-          ]
-        },
-        {
-          ciclo: 8,
-          cursos: [
-            { codigo: "1P38081", nombre: "Obstetricia IV", creditos: "5.0", desc: "Procedimientos quirúrgicos y manejo avanzado obstétrico." },
-            { codigo: "1P38082", nombre: "Ginecología II", creditos: "4.0", desc: "Patologías ginecológicas complejas y climaterio." },
-            { codigo: "1P38083", nombre: "Medicina Legal", creditos: "3.0", desc: "Aspectos legales y peritaje en salud." },
-            { codigo: "1P38084", nombre: "Administración en Salud", creditos: "3.0", desc: "Gestión de servicios y liderazgo en salud." },
-            { codigo: "1P38085", nombre: "Neonatología", creditos: "3.0", desc: "Atención integral del recién nacido." }
-          ]
-        },
-        {
-          ciclo: 9,
-          cursos: [
-            { codigo: "1P38091", nombre: "Internado Hospitalario I", creditos: "12.0", desc: "Práctica preprofesional intensiva en áreas clínicas." },
-            { codigo: "1P38092", nombre: "Seminario de Tesis I", creditos: "4.0", desc: "Formulación y sustentación del proyecto de investigación." }
-          ]
-        },
-        {
-          ciclo: 10,
-          cursos: [
-            { codigo: "1P38101", nombre: "Internado Hospitalario II", creditos: "12.0", desc: "Consolidación de competencias clínicas profesionales." },
-            { codigo: "1P38102", nombre: "Seminario de Tesis II", creditos: "4.0", desc: "Ejecución y defensa final del trabajo de investigación." }
-          ]
-        }
-      ]
-      .map(ciclo => `
-        <div class="bg-white rounded-2xl shadow-sm border border-rose-100 hover:shadow-md transition">
+  <!-- Grilla de ciclos -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
 
-          <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
-            <h3 class="font-bold text-lg flex items-center">
-              <i data-lucide="layers" class="mr-2 w-5 h-5"></i>
-              CICLO ACADÉMICO ${ciclo.ciclo}
-            </h3>
+    <!-- CICLO 1 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-rose-100 hover:shadow-md transition">
+      <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
+        <h3 class="font-bold text-lg flex items-center gap-2">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+          CICLO ACADÉMICO 1
+        </h3>
+      </div>
+      <div class="p-4 divide-y divide-rose-100/60">
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">
+              G1A01A
+            </span>
+            <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
           </div>
-
-          <div class="p-2 divide-y divide-rose-100/60">
-            ${
-              ciclo.cursos.map(curso => `
-                <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
-                  <div class="flex justify-between items-center mb-2 gap-2">
-                    <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">
-                      ${curso.codigo}
-                    </span>
-                    <span class="text-xs font-extrabold text-pink-700">
-                      ${curso.creditos} CRÉDITOS
-                    </span>
-                  </div>
-
-                  <h4 class="font-bold text-slate-800 mb-1">
-                    ${curso.nombre}
-                  </h4>
-
-                  <p class="text-xs text-slate-600 leading-relaxed">
-                    ${curso.desc}
-                  </p>
-                </div>
-              `).join("")}
-          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Estrategias del Aprendizaje</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Desarrollo de habilidades cognitivas y métodos de estudio para la formación académica superior.</p>
         </div>
-      `).join("")}
+
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">
+              G1A01C
+              </span>
+            <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Matemática</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Fundamentos lógicos y cálculo aplicado al análisis de datos en salud materno-perinatal.</p>
+        </div>
+
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">G1A01D</span>
+            <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Defensa y Realidad Nacional</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Estudio de la soberanía nacional, contexto geopolítico y responsabilidad ciudadana.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38014</span>
+            <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Biología General</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Bases moleculares y celulares de la vida, esenciales para la comprensión de la anatomía.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38015</span>
+            <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Lenguaje</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Comunicación asertiva, redacción científica y expresión oral profesional.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CICLO 2 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-rose-100 hover:shadow-md transition">
+      <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
+        <h3 class="font-bold text-lg flex items-center gap-2">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+          CICLO ACADÉMICO 2
+        </h3>
+      </div>
+      <div class="p-4 divide-y divide-rose-100/60">
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38031</span>
+            <span class="text-xs font-extrabold text-pink-700">5.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Anatomía General</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Descripción macroscópica detallada de los sistemas y aparatos del cuerpo humano.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38032</span>
+            <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Histología y Embriología General</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Estudio microscópico de tejidos y las etapas iniciales del desarrollo prenatal.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38033</span>
+            <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Física Médica</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Leyes físicas aplicadas al funcionamiento del organismo y equipos médicos.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38034</span>
+            <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Ecología y Desarrollo Sostenible</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Relación entre ecosistemas y salud humana bajo un enfoque sostenible.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38035</span>
+            <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Metodología de la Investigación Científica</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Bases para diseñar y ejecutar proyectos de investigación en salud.</p>
+        </div>
+      </div>
+    </div>
+<!-- CICLO 3 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-rose-100 hover:shadow-md transition">
+      <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
+        <h3 class="font-bold text-lg flex items-center gap-2">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+          CICLO ACADÉMICO 3
+        </h3>
+      </div>
+      <div class="p-4 divide-y divide-rose-100/60">
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38031</span>
+            <span class="text-xs font-extrabold text-pink-700">5.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Anatomía General</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Descripción macroscópica detallada de los sistemas y aparatos del cuerpo humano.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38032</span>
+            <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Histología y Embriología General</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Estudio microscópico de tejidos y las etapas iniciales del desarrollo prenatal.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38033</span>
+            <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Física Médica</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Leyes físicas aplicadas al funcionamiento del organismo y equipos médicos.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38034</span>
+            <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Ecología y Desarrollo Sostenible</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Relación entre ecosistemas y salud humana bajo un enfoque sostenible.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38035</span>
+            <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Metodología de la Investigación Científica</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Bases para diseñar y ejecutar proyectos de investigación en salud.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CICLO 4 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-rose-100 hover:shadow-md transition">
+      <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
+        <h3 class="font-bold text-lg flex items-center gap-2">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+          CICLO ACADÉMICO 4
+        </h3>
+      </div>
+      <div class="p-4 divide-y divide-rose-100/60">
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38041</span>
+            <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Anatomía Obstétrica</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Estudio específico de la pelvis, canal del parto y estructuras asociadas.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38042</span>
+            <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Fisiología General</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Funcionamiento integral del organismo humano y sus sistemas.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38043</span>
+            <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Microbiología y Parasitología</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Agentes infecciosos y su relación con la salud reproductiva.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38044</span>
+            <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Bioquímica</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Procesos metabólicos celulares y moleculares fundamentales.</p>
+        </div>
+        <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+          <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+            <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38045</span>
+            <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1">Introducción a la Obstetricia</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Rol profesional, ética y campo laboral del obstetra.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CICLO 5 -->
+<div class="bg-white rounded-2xl shadow-sm border border-rose-100 hover:shadow-md transition">
+  <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
+    <h3 class="font-bold text-lg flex items-center gap-2">
+      <i data-lucide="layers" class="w-5 h-5"></i>
+      CICLO ACADÉMICO 5
+    </h3>
+  </div>
+  <div class="p-4 divide-y divide-rose-100/60">
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38051</span>
+        <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Fisiología Obstétrica</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Cambios fisiológicos durante el embarazo, parto y puerperio.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38052</span>
+        <span class="text-xs font-extrabold text-pink-700">5.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Obstetricia I</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Semiología obstétrica y control prenatal del embarazo normal.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38053</span>
+        <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Farmacología General</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Principios del uso terapéutico de medicamentos.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38054</span>
+        <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Nutrición y Salud</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Requerimientos nutricionales de la gestante, madre y recién nacido.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CICLO 6 -->
+<div class="bg-white rounded-2xl shadow-sm border border-rose-100 hover:shadow-md transition">
+  <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
+    <h3 class="font-bold text-lg flex items-center gap-2">
+      <i data-lucide="layers" class="w-5 h-5"></i>
+      CICLO ACADÉMICO 6
+    </h3>
+  </div>
+  <div class="p-4 divide-y divide-rose-100/60">
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38061</span>
+        <span class="text-xs font-extrabold text-pink-700">5.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Obstetricia II</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Atención del embarazo de alto riesgo y complicaciones obstétricas.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38062</span>
+        <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Ginecología I</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Bases clínicas y atención ginecológica integral.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38063</span>
+        <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Epidemiología</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Análisis de enfermedades y eventos en salud pública.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38064</span>
+        <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Salud Pública</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Organización del sistema sanitario y prevención comunitaria.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38065</span>
+        <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Psicología</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Procesos psicológicos y acompañamiento en salud reproductiva.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CICLO 7 -->
+<div class="bg-white rounded-2xl shadow-sm border border-rose-100 hover:shadow-md transition">
+  <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
+    <h3 class="font-bold text-lg flex items-center gap-2">
+      <i data-lucide="layers" class="w-5 h-5"></i>
+      CICLO ACADÉMICO 7
+    </h3>
+  </div>
+  <div class="p-4 divide-y divide-rose-100/60">
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38071</span>
+        <span class="text-xs font-extrabold text-pink-700">5.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Obstetricia III</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Atención integral del parto y puerperio con enfoque clínico.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38072</span>
+        <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Salud Sexual y Reproductiva</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Promoción, prevención y planificación familiar.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38073</span>
+        <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Bioética</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Dilemas éticos en la práctica clínica y la investigación.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38074</span>
+        <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Educación para la Salud</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Estrategias educativas para la promoción de estilos de vida saludables.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38075</span>
+        <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Preparación Psicoprofiláctica</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Técnicas de preparación física y emocional para el parto.</p>
+    </div>
+  </div>
+</div>
+<!-- CICLO 8 -->
+<div class="bg-white rounded-2xl shadow-sm border border-rose-100 hover:shadow-md transition">
+  <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
+    <h3 class="font-bold text-lg flex items-center gap-2">
+      <i data-lucide="layers" class="w-5 h-5"></i>
+      CICLO ACADÉMICO 8
+    </h3>
+  </div>
+  <div class="p-4 divide-y divide-rose-100/60">
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38081</span>
+        <span class="text-xs font-extrabold text-pink-700">5.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Obstetricia IV</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Procedimientos quirúrgicos y manejo avanzado obstétrico.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38082</span>
+        <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Ginecología II</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Patologías ginecológicas complejas y climaterio.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38083</span>
+        <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Medicina Legal</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Aspectos legales y peritaje en salud.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38084</span>
+        <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Administración en Salud</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Gestión de servicios y liderazgo en salud.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38085</span>
+        <span class="text-xs font-extrabold text-pink-700">3.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Neonatología</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Atención integral del recién nacido.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CICLO 9 -->
+<div class="bg-white rounded-2xl shadow-sm border border-rose-100 hover:shadow-md transition">
+  <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
+    <h3 class="font-bold text-lg flex items-center gap-2">
+      <i data-lucide="layers" class="w-5 h-5"></i>
+      CICLO ACADÉMICO 9
+    </h3>
+  </div>
+  <div class="p-4 divide-y divide-rose-100/60">
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38091</span>
+        <span class="text-xs font-extrabold text-pink-700">12.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Internado Hospitalario I</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Práctica preprofesional intensiva en áreas clínicas.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38092</span>
+        <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Seminario de Tesis I</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Formulación y sustentación del proyecto de investigación.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CICLO 10 -->
+<div class="bg-white rounded-2xl shadow-sm border border-rose-100 hover:shadow-md transition">
+  <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
+    <h3 class="font-bold text-lg flex items-center gap-2">
+      <i data-lucide="layers" class="w-5 h-5"></i>
+      CICLO ACADÉMICO 10
+    </h3>
+  </div>
+  <div class="p-4 divide-y divide-rose-100/60">
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38101</span>
+        <span class="text-xs font-extrabold text-pink-700">12.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Internado Hospitalario II</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Consolidación de competencias clínicas profesionales.</p>
+    </div>
+    <div class="p-4 hover:bg-rose-50/60 rounded-xl transition-colors">
+      <div class="flex justify-between items-center mb-2 gap-2 flex-wrap">
+        <span class="text-xs font-extrabold text-red-800 bg-red-50 px-2 py-1 rounded">1P38102</span>
+        <span class="text-xs font-extrabold text-pink-700">4.0 CRÉDITOS</span>
+      </div>
+      <h4 class="font-bold text-slate-800 mb-1">Seminario de Tesis II</h4>
+      <p class="text-xs text-slate-600 leading-relaxed">Ejecución y defensa final del trabajo de investigación.</p>
+    </div>
+  </div>
+</div>
+
   </div>
 </div>
       `,
@@ -2553,4 +2891,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
